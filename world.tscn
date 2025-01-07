@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://shd4jmgshtcs"]
+
+[ext_resource type="PackedScene" uid="uid://b05mykmtotgyl" path="res://Player.tscn" id="1_xjuyk"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gfis6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ssje"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wyuhw"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0udlp"]
+albedo_color = Color(0.597182, 0.459622, 0.34693, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_33kwh"]
+size = Vector3(20, 1, 20)
+
+[node name="World" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.227757)
+mesh = SubResource("CapsuleMesh_gfis6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D"]
+shape = SubResource("BoxShape3D_2ssje")
+
+[node name="Node3D" parent="." instance=ExtResource("1_xjuyk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.90261)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3414, 0)
+mesh = SubResource("BoxMesh_wyuhw")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_0udlp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3414, 0)
+shape = SubResource("BoxShape3D_33kwh")
