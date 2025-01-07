@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://67540nedyvrm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_luic7"]
+bg_color = Color(0, 0.697311, 0.604348, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_peoup"]
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxFlat_luic7")
+Button/styles/normal = SubResource("StyleBoxFlat_peoup")
