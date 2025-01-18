@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=7 format=3 uid="uid://shd4jmgshtcs"]
+=======
+[gd_scene load_steps=9 format=3 uid="uid://dfb3hcn4ofx0h"]
+>>>>>>> Stashed changes
 
 [ext_resource type="PackedScene" uid="uid://b05mykmtotgyl" path="res://Player.tscn" id="1_xjuyk"]
 
@@ -15,7 +19,17 @@ albedo_color = Color(0.597182, 0.459622, 0.34693, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_33kwh"]
 size = Vector3(20, 1, 20)
 
+<<<<<<< Updated upstream
 [node name="World" type="Node3D"]
+=======
+[sub_resource type="BoxMesh" id="BoxMesh_khhiv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0v7de"]
+
+[node name="World" type="Node3D" node_paths=PackedStringArray("Player")]
+script = ExtResource("1_8yw0b")
+Player = NodePath("Player")
+>>>>>>> Stashed changes
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.227757)
@@ -40,3 +54,20 @@ surface_material_override/0 = SubResource("StandardMaterial3D_0udlp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3414, 0)
 shape = SubResource("BoxShape3D_33kwh")
+<<<<<<< Updated upstream
+=======
+
+[node name="Mob" parent="." instance=ExtResource("3_e54ce")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.87096)
+collision_layer = 2
+collision_mask = 15
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5137, -0.619511, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_khhiv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_0v7de")
+>>>>>>> Stashed changes
