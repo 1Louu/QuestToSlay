@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://belvwuc56rro1"]
+[gd_scene load_steps=4 format=3 uid="uid://belvwuc56rro1"]
 
+[ext_resource type="Script" path="res://interfaces/mainmenu.gd" id="1_im1mg"]
 [ext_resource type="Theme" uid="uid://67540nedyvrm" path="res://interfaces/MainMenu.tres" id="1_sqp4r"]
 [ext_resource type="Texture2D" uid="uid://c3tlbpbheqy6c" path="res://Logo_Quest_To_slay.png" id="2_1bj1m"]
 
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_im1mg")
 
 [node name="background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -61,3 +63,6 @@ offset_top = 1.0
 offset_right = 382.0
 offset_bottom = 285.0
 texture = ExtResource("2_1bj1m")
+
+[connection signal="pressed" from="MenuContainer/ButtonPlay" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="MenuContainer/ButtonQuit" to="." method="_on_button_quit_pressed"]
