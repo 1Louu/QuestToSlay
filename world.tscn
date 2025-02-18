@@ -11,9 +11,10 @@ data = PackedVector3Array(-14.576, 0.056, 18.4738, -15.297, 0.056, 17.6359, -14.
 
 [node name="World" type="Node"]
 
-[node name="Mob" parent="." instance=ExtResource("2_l65ny")]
+[node name="Mob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_l65ny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3116, 0, 0)
 collision_mask = 7
+player = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("3_v1mm3")]
 
