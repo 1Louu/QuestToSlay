@@ -1,10 +1,16 @@
-extends CharacterBody3D
+extends CharacterBody3D 
+class_name Player
+
 var look_dir: Vector2
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+var mouse_captured: bool = false # variable to check if the mouse is centered or not. This to make the mouse not go outside the game.
+
 @onready var PauseMenu = $PauseGame
+@onready var UI = $UIPlayer
+@onready var Target= $Pivot/TargetMob
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -12,8 +18,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		_rotate_camera()
 		
 func _ready() -> void:
-	PausePlayer
-	
+	capture_mouse()
+
 func _close() -> void:
 	get_tree().quit();
 	
@@ -25,13 +31,11 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	
-	if Input.is_action_just_pressed("echap"):
-		_close()
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	var cam_basis = $Camera3D.transform.basis
+	var cam_basis = $Pivot.transform.basis
 	
 	var forward = -cam_basis.z.normalized()
 	var right = cam_basis.x.normalized()
@@ -51,13 +55,25 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func _rotate_camera(sens_mod: float = 1.0) -> void:
-	$Camera3D.rotation.y -= look_dir.x * 1 * sens_mod
-	$Camera3D.rotation.x -= look_dir.y * 1 * sens_mod
+	$Pivot.rotation.y -= look_dir.x * 1 * sens_mod
+	$Pivot.rotation.x -= look_dir.y * 1 * sens_mod
 	
-func PausePlayer():
-	if Global.paused: 
-		$PausedMenu.hide()
+func capture_mouse() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	mouse_captured = true
+
+func release_mouse() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	mouse_captured = false
+
+func _on_pause_game_paused() -> void:
+	if(mouse_captured):
+		release_mouse()
+	else:
 		capture_mouse()
-	else: 
-		$PausedMenu.show()
+
+func _on_target_mob_target() -> void:
+	if(Target.get_class()):
+		UI.targetfound(Target.targbody)
+	
 	
