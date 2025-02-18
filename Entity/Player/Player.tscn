@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b05mykmtotgyl"]
+
+[ext_resource type="Script" path="res://Entity/Player/player.gd" id="1_3ybdo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ftegl"]
+
+[node name="Player" type="CharacterBody3D"]
+collision_mask = 15
+script = ExtResource("1_3ybdo")
+
+[node name="collisionPLayer" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ftegl")
+
+[node name="Camera3D" type="Camera3D" parent="."]
