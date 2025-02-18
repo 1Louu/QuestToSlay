@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://belvwuc56rro1"]
 
-[ext_resource type="Script" path="res://interfaces/mainmenu.gd" id="1_im1mg"]
+[ext_resource type="Script" uid="uid://84yihwoaco1m" path="res://interfaces/mainmenu.gd" id="1_im1mg"]
 [ext_resource type="Theme" uid="uid://67540nedyvrm" path="res://interfaces/MainMenu.tres" id="1_sqp4r"]
 [ext_resource type="Texture2D" uid="uid://c3tlbpbheqy6c" path="res://Logo_Quest_To_slay.png" id="2_1bj1m"]
 
