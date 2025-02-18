@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c3tlbpbheqy6c" path="res://Logo_Quest_To_slay.png" id="2_1bj1m"]
 
 [node name="MainMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
