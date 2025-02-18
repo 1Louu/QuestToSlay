@@ -4,13 +4,15 @@ var look_dir: Vector2
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@onready var PauseMenu = $PauseGame
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		look_dir = event.relative * 0.001
 		_rotate_camera()
 		
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	PausePlayer
 	
 func _close() -> void:
 	get_tree().quit();
@@ -51,3 +53,11 @@ func _physics_process(delta: float) -> void:
 func _rotate_camera(sens_mod: float = 1.0) -> void:
 	$Camera3D.rotation.y -= look_dir.x * 1 * sens_mod
 	$Camera3D.rotation.x -= look_dir.y * 1 * sens_mod
+	
+func PausePlayer():
+	if Global.paused: 
+		$PausedMenu.hide()
+		capture_mouse()
+	else: 
+		$PausedMenu.show()
+	
