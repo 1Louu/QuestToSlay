@@ -2,8 +2,7 @@ extends Control
 signal paused
 
 func _ready() -> void:
-	Global.paused = true
-	PausePlayer();
+	Global.paused = false
 
 func _on_resume_button_pressed() -> void:
 	PausePlayer();

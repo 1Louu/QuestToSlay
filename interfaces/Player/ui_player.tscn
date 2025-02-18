@@ -68,9 +68,11 @@ script = ExtResource("1_5kjf4")
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 step = 0.1
 value = 50.0
 texture_under = SubResource("NoiseTexture2D_q02ry")
@@ -79,6 +81,7 @@ texture_progress = SubResource("NoiseTexture2D_4fcuq")
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
+mouse_filter = 2
 theme = SubResource("Theme_srhi7")
 value = 100.0
 show_percentage = false
@@ -93,6 +96,7 @@ offset_left = -100.0
 offset_right = 100.0
 offset_bottom = 54.0
 grow_horizontal = 2
+mouse_filter = 2
 
 [node name="TargetLabel" type="Label" parent="Target"]
 layout_mode = 2
@@ -101,6 +105,7 @@ horizontal_alignment = 1
 
 [node name="TargetHP" type="ProgressBar" parent="Target"]
 layout_mode = 2
+mouse_filter = 2
 value = 100.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -116,3 +121,4 @@ offset_right = 2.5
 offset_bottom = 2.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2

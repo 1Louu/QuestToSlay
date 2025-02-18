@@ -1,22 +1,19 @@
-extends CharacterBody3D 
+extends Entity 
 class_name Player
 
 var look_dir: Vector2
 
-@export var mob: Node3D 
+@export var mob: Node3D
 var can_attack = false
 
-@export var SPEED = 5.0
-@export var JUMP_VELOCITY = 4.5
-@export var ATTACK = 5
-@export var DEFENSE = 5
-@export var HP = 5
+@export var UI: Control
+@export var PauseMenu: Control
 
 
-var mouse_captured: bool = false # variable to check if the mouse is centered or not. This to make the mouse not go outside the game.
 
-@onready var PauseMenu = $PauseGame
-@onready var UI = $UIPlayer
+
+var mouse_captured: bool = true # variable to check if the mouse is centered or not. This to make the mouse not go outside the game.
+
 @onready var Target= $Pivot/TargetMob
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -29,7 +26,6 @@ func _ready() -> void:
 
 	$Area3D.connect("body_entered", _on_attack_range_body_entered)
 	$Area3D.connect("body_exited", _on_attack_range_body_exited)
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _process(delta: float) -> void:
 	if can_attack and Input.is_action_just_pressed("attack"):
@@ -46,9 +42,6 @@ func _on_attack_range_body_exited(body: Node) -> void:
 func _close() -> void:
 	get_tree().quit();
 	
-func _isDead() -> void:
-	if (HP <= 0):
-		get_tree().change_scene_to_file("res://interfaces/mainmenu.tscn")
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -74,11 +67,11 @@ func _physics_process(delta: float) -> void:
 	
 	var direction = (-forward * input_dir.y + right * input_dir.x).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * SPD
+		velocity.z = direction.z * SPD
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, SPD)
+		velocity.z = move_toward(velocity.z, 0, SPD)
 
 	move_and_slide()
 	
@@ -101,7 +94,7 @@ func _on_pause_game_paused() -> void:
 		capture_mouse()
 
 func _on_target_mob_target() -> void:
-	if(Target.get_class()):
+	if(Target.is_class("Entity")):
 		UI.targetfound(Target.targbody)
 	
 	

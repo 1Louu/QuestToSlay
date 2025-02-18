@@ -1,15 +1,15 @@
-extends Node3D
+extends CharacterBody3D
 class_name Entity
 
 @export var MaxHP: float 
 @export var CurrentHP: float  
-
 @export var Strenght: float
 
 @export var MaxMana: float
 @export var Mana: float
 
 @export var SPD: float
+@export var JUMP_VELOCITY: float
 @export var armor: float
 @export var Entityname:String  
 
