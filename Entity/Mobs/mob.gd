@@ -6,7 +6,7 @@ class_name mob
 
 func _ready() -> void:
 	$Area3D.connect("body_entered", _on_attack_range_body_entered)
-	pass 
+
 	
 
 func _on_attack_range_body_entered(body: Node) -> void:

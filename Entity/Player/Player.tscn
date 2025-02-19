@@ -8,6 +8,21 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_id4x5"]
 
+[sub_resource type="Animation" id="Animation_0s3jf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.41895, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_rj2x4"]
 resource_name = "attack"
 tracks/0/type = "rotation_3d"
@@ -28,21 +43,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, -1.41895, 0), Vector3(-0.13845, -1.50824, 1.14473), Vector3(0, -1.41895, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_0s3jf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -1.41895, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_43y4t"]
@@ -73,11 +73,13 @@ target_position = Vector3(0, -100, 0)
 collision_mask = 2
 script = ExtResource("2_0s3jf")
 
+[node name="OffTargetTimer" type="Timer" parent="Pivot/TargetMob"]
+
 [node name="Node3D" type="Node3D" parent="Pivot"]
-transform = Transform3D(0.151261, 0, -0.988494, 0, 1, 0, 0.988494, 0, 0.151261, 0.491953, 0, -0.459599)
+transform = Transform3D(0.151264, 0, -0.988494, 0, 1, 0, 0.988494, 0, 0.151264, 0.491953, 0, -0.459599)
 
 [node name="sword" parent="Pivot/Node3D" instance=ExtResource("3_rj2x4")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.55, 0)
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0.55, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.12887)
@@ -96,4 +98,6 @@ root_node = NodePath("../Pivot/Node3D/sword")
 tree_root = SubResource("AnimationRootNode_wu0n7")
 anim_player = NodePath("../AnimationPlayer")
 
+[connection signal="offTarget" from="Pivot/TargetMob" to="." method="_on_target_mob_off_target"]
 [connection signal="target" from="Pivot/TargetMob" to="." method="_on_target_mob_target"]
+[connection signal="timeout" from="Pivot/TargetMob/OffTargetTimer" to="Pivot/TargetMob" method="_on_off_target_timer_timeout"]

@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://bonhpunonbj6b"]
+[gd_scene load_steps=13 format=3 uid="uid://bonhpunonbj6b"]
 
-[ext_resource type="Script" uid="uid://bwgwvoxltchu2" path="res://interfaces/Player/ui_player.gd" id="1_5kjf4"]
+[ext_resource type="Script" uid="uid://cnsnq1xma7tgs" path="res://interfaces/Player/ui_player.gd" id="1_5kjf4"]
 
 [sub_resource type="Gradient" id="Gradient_8td73"]
 offsets = PackedFloat32Array(0, 0.725352, 1)
@@ -54,6 +54,12 @@ corner_radius_bottom_left = 15
 ProgressBar/styles/background = SubResource("StyleBoxFlat_j6ku1")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_btt7h")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kjf4"]
+bg_color = Color(0.20868, 1.51913e-07, 2.40654e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q02ry"]
+bg_color = Color(0.842635, 2.06962e-06, 5.77569e-07, 1)
+
 [node name="UIPlayer" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -93,8 +99,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -100.0
+offset_top = 20.0
 offset_right = 100.0
-offset_bottom = 54.0
+offset_bottom = 74.0
 grow_horizontal = 2
 mouse_filter = 2
 
@@ -104,9 +111,13 @@ text = "Target"
 horizontal_alignment = 1
 
 [node name="TargetHP" type="ProgressBar" parent="Target"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 mouse_filter = 2
-value = 100.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5kjf4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_q02ry")
+value = 50.0
+show_percentage = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

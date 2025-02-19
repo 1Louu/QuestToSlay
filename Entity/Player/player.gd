@@ -3,11 +3,9 @@ class_name Player
 
 var look_dir: Vector2
 
-@export var mob: Node3D
 var can_attack = false
 
 @export var UI: Control
-@export var PauseMenu: Control
 
 
 
@@ -93,8 +91,10 @@ func _on_pause_game_paused() -> void:
 	else:
 		capture_mouse()
 
-func _on_target_mob_target() -> void:
-	if(Target.is_class("Entity")):
-		UI.targetfound(Target.targbody)
-	
-	
+func _on_target_mob_target(targbody: mob) -> void:
+	UI.targetfound(targbody)
+	print("name is : ", targbody.Entityname)
+
+
+func _on_target_mob_off_target() -> void:
+	UI.OffTarget()
