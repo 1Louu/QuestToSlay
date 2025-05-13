@@ -6,14 +6,15 @@ extends CharacterBody3D
 @export var DEFENSE = 5
 @export var MAX_HP = 5
 @export var ROTATION_SPEED = 5
+@export var ACCELERATION = 5
 
 var health: float
 var is_alive: bool = true
 var direction: Vector3 = Vector3.ZERO
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@onready var model = $Model
-@onready var animation_player = $AnimationPlayer
+#@onready var model = $Model
+#@onready var animation_player = $AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	health = MAX_HP

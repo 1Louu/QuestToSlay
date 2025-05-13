@@ -1,12 +1,8 @@
-extends CharacterBody3D 
-class_name mob 
+extends Entity
+class_name Mob 
 
-
-@export var SPEED = 2.5
 @export var JUMP_VELOCITY = 4.5
 @export var player: Node3D 
-@export var ATTACK = 5
-@export var DEFENSE = 5
 @export var HP = 5
 
 func _ready() -> void:
