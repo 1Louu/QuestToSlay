@@ -8,7 +8,18 @@ var can_attack = false
 @export var UI: Control
 
 
+@export var camera_sensitivity: float = 0.002
 
+#var score: int = 0
+#var collected_items: Dictionary = {}
+var camera_rotation: Vector2 = Vector2.ZERO 
+var input_enabled: bool = true
+
+@onready var camera_pivot = $Pivot
+@onready var camera_3d = $Pivot/Camera3D
+@onready var interaction_ray = $Pivot/Camera3D/InteractionRay
+
+signal player_died
 
 var mouse_captured: bool = true # variable to check if the mouse is centered or not. This to make the mouse not go outside the game.
 
@@ -17,65 +28,99 @@ var mouse_captured: bool = true # variable to check if the mouse is centered or 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		look_dir = event.relative * 0.001
-		_rotate_camera()
 		
 func _ready() -> void:
 	capture_mouse()
+#
+	#$Area3D.connect("body_entered", _on_attack_range_body_entered)
+	#$Area3D.connect("body_exited", _on_attack_range_body_exited)
 
-	$Area3D.connect("body_entered", _on_attack_range_body_entered)
-	$Area3D.connect("body_exited", _on_attack_range_body_exited)
-	
-func _process(delta: float) -> void:
-	if can_attack and Input.is_action_just_pressed("attack"):
-		print("Mob hit!")
-	
-func _on_attack_range_body_entered(body: Node) -> void:
-	if body == mob:
-		can_attack = true
 		
-func _on_attack_range_body_exited(body: Node) -> void:
-	if body == mob:
-		can_attack = false
-
-func _close() -> void:
-	get_tree().quit();
+	super._ready()
 	
+func _input(event):
+	if not input_enabled:
+		return
+		
+	if event is InputEventMouseMotion:
+		rotate_y(-event.relative.x * camera_sensitivity)
+		
+		camera_pivot.rotate_x(-event.relative.y * camera_sensitivity)
+		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, -PI/2, PI/2)
+
+func _physics_process(delta):
+	if not input_enabled:
+		return
+		
+	direction = get_input_direction()
+	handle_jump()
 	
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	super._physics_process(delta)
 
-
+func apply_movement(delta: float) -> void:
+	var global_direction = (transform.basis * Vector3(direction.x, 0, direction.z)).normalized()
+	velocity.x = lerp(velocity.x, global_direction.x * SPD, ACCELERATION * delta)
+	velocity.z = lerp(velocity.z, global_direction.z * SPD, ACCELERATION * delta)
+	
+func get_input_direction() -> Vector3:
+	var input_dir = Vector3.ZERO
+	
+	var cam_basis = camera_3d.global_transform.basis
+	
+	if Input.is_action_pressed("move_forward"):
+		input_dir -= cam_basis.z
+	if Input.is_action_pressed("move_backward"):
+		input_dir += cam_basis.z
+	if Input.is_action_pressed("move_left"):
+		input_dir += cam_basis.x
+	if Input.is_action_pressed("move_right"):
+		input_dir -= cam_basis.x
+		
+	input_dir.y = 0
+	return input_dir.normalized()
+	
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	var cam_basis = $Pivot.transform.basis
-	
-	var forward = -cam_basis.z.normalized()
-	var right = cam_basis.x.normalized()
-	forward.y = 0
-	right.y = 0
-	forward = forward.normalized()
-	right = right.normalized()
-	
-	var direction = (-forward * input_dir.y + right * input_dir.x).normalized()
-	if direction:
-		velocity.x = direction.x * SPD
-		velocity.z = direction.z * SPD
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPD)
-		velocity.z = move_toward(velocity.z, 0, SPD)
+	#if Input.is_action_just_pressed("jump") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+		#
+	## Get the input direction and handle the movement/deceleration.
+	## As good practice, you should replace UI actions with custom gameplay actions.
+	#var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	#var cam_basis = $Pivot.transform.basis
+	#
+	#var forward = -cam_basis.z.normalized()
+	#var right = cam_basis.x.normalized()
+	#forward.y = 0
+	#right.y = 0
+	#forward = forward.normalized()
+	#right = right.normalized()
+	#
+	#var direction = (-forward * input_dir.y + right * input_dir.x).normalized()
+	#if direction:
+		#velocity.x = direction.x * SPD
+		#velocity.z = direction.z * SPD
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, SPD)
+		#velocity.z = move_toward(velocity.z, 0, SPD)
+		#
+func handle_jump() -> void:
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			velocity.y = JUMP_VELOCITY
 
-	move_and_slide()
+#func update_animation() -> void:
+	#if not animation_player:
+		#return
 	
-func _rotate_camera(sens_mod: float = 1.0) -> void:
-	$Pivot.rotation.y -= look_dir.x * 1 * sens_mod
-	$Pivot.rotation.x -= look_dir.y * 1 * sens_mod
+	#if not is_on_floor():
+		#if velocity.y > 0:
+			#animation_player.play("jump")
+		#else:
+			#animation_player.play("fall")
+	#elif direction != Vector3.ZERO:
+		#animation_player.play("run")
+	#else:	
+		#animation_player.play("idle")
 	
 func capture_mouse() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -91,9 +136,38 @@ func _on_pause_game_paused() -> void:
 	else:
 		capture_mouse()
 
-func _on_target_mob_target(targbody: mob) -> void:
+func _on_target_mob_target(targbody: Mob) -> void:
 	UI.targetfound(targbody)
 
 
 func _on_target_mob_off_target() -> void:
 	UI.OffTarget()
+	
+	#if not is_on_floor():
+		#if velocity.y > 0:
+			#animation_player.play("jump")
+		#else:
+			#animation_player.play("fall")
+	#elif direction != Vector3.ZERO:
+		#animation_player.play("run")
+	#else:
+		#animation_player.play("idle")
+		
+func die() -> void:
+	super.die() 
+	#animation_player.play("death")
+	input_enabled = false
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
+	emit_signal("player_died")
+	
+	#await animation_player.animation_finished
+
+#func reset_player() -> void:
+	#CurrentHP = MaxHP
+	#is_alive = true
+	#input_enabled = true
+	#velocity = Vector3.ZERO
+	#
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

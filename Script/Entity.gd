@@ -14,6 +14,7 @@ class_name Entity
 @export var Entityname:String  
 
 @export var ROTATION_SPEED = 5
+@export var ACCELERATION = 5
 
 var direction: Vector3 = Vector3.ZERO 
 # Direction serve as a point to look at (mostly used for mobs),  

@@ -1,6 +1,7 @@
-extends Entity 
-class_name mob 
 
+
+extends Entity
+class_name Mob 
 
 @export var player: Node3D 
 
@@ -24,5 +25,6 @@ func _physics_process(delta: float) -> void:
 		var direction = (player.global_transform.origin - global_transform.origin).normalized()
 		velocity.x = direction.x * SPD
 		velocity.z = direction.z * SPD
+		
 
 	move_and_slide()
