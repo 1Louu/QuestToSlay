@@ -1,9 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://bonhpunonbj6b"]
 
 [ext_resource type="Script" uid="uid://cnsnq1xma7tgs" path="res://Script/Interfaces/ui_player.gd" id="1_5kjf4"]
-[ext_resource type="Theme" uid="uid://67540nedyvrm" path="res://Assets/Themes/MainMenu.tres" id="2_q02ry"]
-
-[sub_resource type="Theme" id="Theme_5kjf4"]
+[ext_resource type="Theme" uid="uid://c4nque1gm0y2u" path="res://Assets/Themes/ManaBar.tres" id="2_8itrs"]
+[ext_resource type="Theme" uid="uid://cu60x0reedgi3" path="res://Assets/Themes/LifeBar.tres" id="3_4uvxo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kjf4"]
 bg_color = Color(0.20868, 1.51913e-07, 2.40654e-08, 1)
@@ -42,6 +41,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("1_5kjf4")
 
@@ -57,11 +58,11 @@ offset_bottom = -13.0
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="Mana" type="ProgressBar" parent="VBoxPlayerStats"]
+[node name="ManaBar" type="ProgressBar" parent="VBoxPlayerStats"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 mouse_filter = 2
-theme = SubResource("Theme_5kjf4")
+theme = ExtResource("2_8itrs")
 value = 100.0
 show_percentage = false
 
@@ -69,11 +70,11 @@ show_percentage = false
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 mouse_filter = 2
-theme = ExtResource("2_q02ry")
+theme = ExtResource("3_4uvxo")
 value = 100.0
 show_percentage = false
 
-[node name="Target" type="VBoxContainer" parent="."]
+[node name="VBoxTarget" type="VBoxContainer" parent="."]
 visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
@@ -87,12 +88,12 @@ offset_bottom = 74.0
 grow_horizontal = 2
 mouse_filter = 2
 
-[node name="TargetLabel" type="Label" parent="Target"]
+[node name="TargetLabel" type="Label" parent="VBoxTarget"]
 layout_mode = 2
 text = "Target"
 horizontal_alignment = 1
 
-[node name="TargetHP" type="ProgressBar" parent="Target"]
+[node name="TargetHP" type="ProgressBar" parent="VBoxTarget"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 mouse_filter = 2
@@ -117,6 +118,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Other Lifebar" type="TextureProgressBar" parent="."]
+visible = false
 layout_mode = 2
 offset_left = 25.0
 offset_top = 551.0
@@ -127,3 +129,17 @@ step = 0.1
 value = 55.1
 texture_under = SubResource("NoiseTexture2D_q02ry")
 texture_progress = SubResource("NoiseTexture2D_4fcuq")
+
+[node name="ExperienceBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -47.0
+offset_right = 150.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
