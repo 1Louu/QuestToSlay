@@ -30,7 +30,7 @@ uniform sampler2D tex_frg_4;
 
 void fragment() {
 // ColorConstant:3
-	vec4 n_out3p0 = vec4(0.027300, 0.058072, 0.016227, 1.000000);
+	vec4 n_out3p0 = vec4(0.027299, 0.058072, 0.016227, 1.000000);
 
 
 // ColorConstant:6
@@ -51,7 +51,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-449.606, -127.398)
 nodes/fragment/3/node = SubResource("VisualShaderNodeColorConstant_87ah4")
 nodes/fragment/3/position = Vector2(-380, 200)
 nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_ecxl1")

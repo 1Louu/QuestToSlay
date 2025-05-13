@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bpa8swkhcj3b3"]
 
-[ext_resource type="Script" uid="uid://cilpcjoqx2ads" path="res://interfaces/Player/ingame_pause.gd" id="1_ownfo"]
+[ext_resource type="Script" uid="uid://cilpcjoqx2ads" path="res://Script/Interfaces/ingame_pause.gd" id="1_ownfo"]
 
 [node name="PauseGame" type="Control"]
 process_mode = 3

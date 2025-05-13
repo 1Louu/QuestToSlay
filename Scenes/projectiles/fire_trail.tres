@@ -1,13 +1,13 @@
 [gd_resource type="VisualShader" load_steps=10 format=3 uid="uid://e0wjmfw5lgfo"]
 
-[ext_resource type="Texture2D" uid="uid://cyeksynfe0pxt" path="res://Assets/Magic/trail2.png" id="1_c27oc"]
+[ext_resource type="Texture2D" uid="uid://cyeksynfe0pxt" path="res://Assets/Magic/trail2.png" id="1_qg1pj"]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_nybc7"]
 operator = 2
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_kgta8"]
 expanded_output_ports = [0]
-texture = ExtResource("1_c27oc")
+texture = ExtResource("1_qg1pj")
 texture_type = 1
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_02s5q"]
@@ -80,7 +80,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-360.362, -114.996)
 modes/cull = 2
 flags/unshaded = true
 flags/shadows_disabled = true

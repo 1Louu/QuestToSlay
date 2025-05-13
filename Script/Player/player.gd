@@ -93,7 +93,6 @@ func _on_pause_game_paused() -> void:
 
 func _on_target_mob_target(targbody: mob) -> void:
 	UI.targetfound(targbody)
-	print("name is : ", targbody.Entityname)
 
 
 func _on_target_mob_off_target() -> void:

@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=13 format=3 uid="uid://cn0wxtob2d3ex"]
 
-[ext_resource type="Texture2D" uid="uid://b5hai7r12dvd0" path="res://Assets/Magic/T_VFX_Noi55.png" id="1_oovhx"]
+[ext_resource type="Texture2D" uid="uid://b5hai7r12dvd0" path="res://Assets/Magic/T_VFX_Noi55.png" id="1_av5xb"]
 
 [sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_oovhx"]
 parameter_name = "Speed"
@@ -10,7 +10,7 @@ parameter_name = "Fire_Color"
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_pme15"]
 expanded_output_ports = [0]
-texture = ExtResource("1_oovhx")
+texture = ExtResource("1_av5xb")
 texture_type = 1
 
 [sub_resource type="Gradient" id="Gradient_gnpid"]
@@ -101,7 +101,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-349.917, -37.0192)
 modes/cull = 2
 flags/unshaded = true
 flags/shadows_disabled = true
