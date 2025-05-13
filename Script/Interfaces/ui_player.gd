@@ -1,14 +1,14 @@
 extends Control
 
-@onready var Targetlabel = $Target/TargetLabel
-@onready var TargetHPBar= $"Target/TargetHP"
+@onready var Targetlabel = $VBoxTarget/TargetLabel
+@onready var TargetHPBar= $"VBoxTarget/TargetHP"
 
 
 func targetfound(target: mob): 
-	$"Target".show()
+	$"VBoxTarget".show()
 	Targetlabel.set_text(target.Entityname) 
 	TargetHPBar.set_max(target.MaxHP)
 	TargetHPBar.set_value(target.CurrentHP)
 
 func OffTarget():
-	$"Target".hide()
+	$"VBoxTarget".hide()

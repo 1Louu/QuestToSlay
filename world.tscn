@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://ca5ab6t6d1i8s"]
+[gd_scene load_steps=13 format=3 uid="uid://ca5ab6t6d1i8s"]
 
+[ext_resource type="PackedScene" uid="uid://46cq3xv731ia" path="res://Scenes/interfaces/game_over.tscn" id="1_bah7m"]
 [ext_resource type="PackedScene" uid="uid://nv2a5sa8xo6d" path="res://Assets/Environment/ground.tscn" id="1_qox1s"]
 [ext_resource type="PackedScene" uid="uid://bi5rwxq54owub" path="res://Scenes/Mobs/mob.tscn" id="2_l65ny"]
 [ext_resource type="PackedScene" uid="uid://b05mykmtotgyl" path="res://Scenes/Player/Player.tscn" id="3_v1mm3"]
@@ -24,6 +25,9 @@ ambient_light_color = Color(0.912289, 0.912289, 0.912289, 1)
 
 [node name="World" type="Node"]
 
+[node name="GameOver" parent="." instance=ExtResource("1_bah7m")]
+visible = false
+
 [node name="UIPlayer" parent="." instance=ExtResource("4_eu7l1")]
 mouse_filter = 1
 
@@ -45,9 +49,6 @@ Entityname = "Second"
 
 [node name="Player" parent="." node_paths=PackedStringArray("UI") instance=ExtResource("3_v1mm3")]
 UI = NodePath("../UIPlayer")
-
-[node name="Node3D" parent="Player/Pivot" index="2"]
-transform = Transform3D(0.151264, 0, -0.988494, 0, 1, 0, 0.988494, 0, 0.151264, 0.491953, 0, -0.459599)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.7408, 0)
