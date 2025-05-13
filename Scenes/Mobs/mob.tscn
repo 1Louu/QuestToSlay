@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi5rwxq54owub"]
+
+[ext_resource type="Script" uid="uid://hmjxlqg74pq" path="res://Script/Mob/mob.gd" id="1_veuf2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j7b6x"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_uo2ky"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_alqrc"]
+
+[node name="Mob" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_veuf2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_j7b6x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_uo2ky")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, -0.257625, 0, 0)
+shape = SubResource("BoxShape3D_alqrc")

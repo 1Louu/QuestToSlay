@@ -1,6 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://bonhpunonbj6b"]
+[gd_scene load_steps=12 format=3 uid="uid://bonhpunonbj6b"]
 
-[ext_resource type="Script" uid="uid://bwgwvoxltchu2" path="res://interfaces/Player/ui_player.gd" id="1_5kjf4"]
+[ext_resource type="Script" uid="uid://cnsnq1xma7tgs" path="res://Script/Interfaces/ui_player.gd" id="1_5kjf4"]
+[ext_resource type="Theme" uid="uid://67540nedyvrm" path="res://Assets/Themes/MainMenu.tres" id="2_q02ry"]
+
+[sub_resource type="Theme" id="Theme_5kjf4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kjf4"]
+bg_color = Color(0.20868, 1.51913e-07, 2.40654e-08, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q02ry"]
+bg_color = Color(0.842635, 2.06962e-06, 5.77569e-07, 1)
 
 [sub_resource type="Gradient" id="Gradient_8td73"]
 offsets = PackedFloat32Array(0, 0.725352, 1)
@@ -26,34 +35,6 @@ height = 20
 color_ramp = SubResource("Gradient_hfsg1")
 noise = SubResource("FastNoiseLite_0x64n")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6ku1"]
-bg_color = Color(0.360811, 0.0361361, 0.0917003, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.387868, 0.805592, 0.894007, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btt7h"]
-bg_color = Color(0.140424, 0.285125, 0.123534, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.8, 0.8, 0.8, 0)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
-[sub_resource type="Theme" id="Theme_srhi7"]
-ProgressBar/styles/background = SubResource("StyleBoxFlat_j6ku1")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_btt7h")
-
 [node name="UIPlayer" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -64,35 +45,47 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_5kjf4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 40.0
+[node name="VBoxPlayerStats" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -67.0
+offset_right = 220.0
+offset_bottom = -13.0
+grow_vertical = 0
+mouse_filter = 2
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="VBoxContainer"]
-layout_mode = 2
-step = 0.1
-value = 50.0
-texture_under = SubResource("NoiseTexture2D_q02ry")
-texture_progress = SubResource("NoiseTexture2D_4fcuq")
-
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+[node name="Mana" type="ProgressBar" parent="VBoxPlayerStats"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
-theme = SubResource("Theme_srhi7")
+mouse_filter = 2
+theme = SubResource("Theme_5kjf4")
+value = 100.0
+show_percentage = false
+
+[node name="LifeBar" type="ProgressBar" parent="VBoxPlayerStats"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("2_q02ry")
 value = 100.0
 show_percentage = false
 
 [node name="Target" type="VBoxContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -100.0
+offset_top = 20.0
 offset_right = 100.0
-offset_bottom = 54.0
+offset_bottom = 74.0
 grow_horizontal = 2
+mouse_filter = 2
 
 [node name="TargetLabel" type="Label" parent="Target"]
 layout_mode = 2
@@ -100,10 +93,15 @@ text = "Target"
 horizontal_alignment = 1
 
 [node name="TargetHP" type="ProgressBar" parent="Target"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-value = 100.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_5kjf4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_q02ry")
+value = 50.0
+show_percentage = false
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Recticle" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -116,3 +114,16 @@ offset_right = 2.5
 offset_bottom = 2.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[node name="Other Lifebar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+offset_left = 25.0
+offset_top = 551.0
+offset_right = 225.0
+offset_bottom = 571.0
+mouse_filter = 2
+step = 0.1
+value = 55.1
+texture_under = SubResource("NoiseTexture2D_q02ry")
+texture_progress = SubResource("NoiseTexture2D_4fcuq")
