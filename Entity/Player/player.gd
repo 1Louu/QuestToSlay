@@ -1,13 +1,12 @@
 class_name Player
 extends Entity
-var look_dir: Vector2
 
 @export var JUMP_VELOCITY = 5
 @export var camera_sensitivity: float = 0.002
 
 #var score: int = 0
 #var collected_items: Dictionary = {}
-var camera_rotation: Vector2 = Vector2.ZERO 
+var camera_rotation: Vector3 = Vector3.ZERO 
 var input_enabled: bool = true
 
 @onready var camera_pivot = $CameraPivot
@@ -54,12 +53,12 @@ func get_input_direction() -> Vector3:
 	if Input.is_action_pressed("move_backward"):
 		input_dir += cam_basis.z
 	if Input.is_action_pressed("move_left"):
-		input_dir += cam_basis.x
-	if Input.is_action_pressed("move_right"):
 		input_dir -= cam_basis.x
+	if Input.is_action_pressed("move_right"):
+		input_dir += cam_basis.x
 		
 	input_dir.y = 0
-	return input_dir.normalized()
+	return input_dir.normalized() if input_dir.length() > 0 else Vector3.ZERO
 
 func handle_jump() -> void:
 	if Input.is_action_just_pressed("jump"):
