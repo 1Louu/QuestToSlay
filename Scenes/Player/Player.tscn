@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b05mykmtotgyl"]
 
-[ext_resource type="Script" uid="uid://db3dna0qysped" path="res://Script/Player/player.gd" id="1_rj2x4"]
-[ext_resource type="Script" uid="uid://de3x7ftve10td" path="res://Script/Player/target_mob.gd" id="2_0s3jf"]
+[ext_resource type="Script" path="res://Script/Player/player.gd" id="1_rj2x4"]
+[ext_resource type="Script" path="res://Script/Player/target_mob.gd" id="2_0s3jf"]
 [ext_resource type="PackedScene" uid="uid://cqydcspdfki2d" path="res://Assets/weapon/sword.glb" id="3_rj2x4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ftegl"]
@@ -47,13 +47,13 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_43y4t"]
 _data = {
-&"RESET": SubResource("Animation_0s3jf"),
-&"attack": SubResource("Animation_rj2x4")
+"RESET": SubResource("Animation_0s3jf"),
+"attack": SubResource("Animation_rj2x4")
 }
 
 [sub_resource type="AnimationRootNode" id="AnimationRootNode_wu0n7"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 collision_mask = 15
 script = ExtResource("1_rj2x4")
 
@@ -90,7 +90,7 @@ shape = SubResource("BoxShape3D_id4x5")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Pivot/Node3D/sword")
 libraries = {
-&"": SubResource("AnimationLibrary_43y4t")
+"": SubResource("AnimationLibrary_43y4t")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]

@@ -21,7 +21,7 @@ var input_enabled: bool = true
 
 signal player_died
 
-var mouse_captured: bool = true # variable to check if the mouse is centered or not. This to make the mouse not go outside the game.
+var mouse_captured: bool = true
 
 @onready var Target= $Pivot/TargetMob
 
@@ -68,13 +68,13 @@ func get_input_direction() -> Vector3:
 	var cam_basis = camera_3d.global_transform.basis
 	
 	if Input.is_action_pressed("move_forward"):
-		input_dir -= cam_basis.z
+		input_dir.z -= 1
 	if Input.is_action_pressed("move_backward"):
-		input_dir += cam_basis.z
+		input_dir.z += 1
 	if Input.is_action_pressed("move_left"):
-		input_dir += cam_basis.x
+		input_dir.x -= 1
 	if Input.is_action_pressed("move_right"):
-		input_dir -= cam_basis.x
+		input_dir.x += 1
 		
 	input_dir.y = 0
 	return input_dir.normalized()

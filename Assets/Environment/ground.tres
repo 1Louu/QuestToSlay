@@ -1,7 +1,7 @@
 [gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://b3eyxo7xuhrj8"]
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_87ah4"]
-constant = Color(0.0272995, 0.0580719, 0.0162268, 1)
+constant = Color(0.065164, 0.184217, 0.0958281, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_tdy7e"]
 
@@ -30,7 +30,7 @@ uniform sampler2D tex_frg_4;
 
 void fragment() {
 // ColorConstant:3
-	vec4 n_out3p0 = vec4(0.027299, 0.058072, 0.016227, 1.000000);
+	vec4 n_out3p0 = vec4(0.065164, 0.184217, 0.095828, 1.000000);
 
 
 // ColorConstant:6
@@ -59,4 +59,4 @@ nodes/fragment/6/node = SubResource("VisualShaderNodeColorConstant_a5sk8")
 nodes/fragment/6/position = Vector2(-360, 300)
 nodes/fragment/7/node = SubResource("VisualShaderNodeMix_yr5k2")
 nodes/fragment/7/position = Vector2(100, -160)
-nodes/fragment/connections = PackedInt32Array(6, 0, 7, 1, 7, 0, 0, 0, 3, 0, 7, 0, 4, 0, 7, 2)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 0, 6, 0, 7, 1, 7, 0, 0, 0, 3, 0, 7, 0, 4, 0, 7, 2)

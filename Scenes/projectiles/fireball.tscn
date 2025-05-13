@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://de1d5hxok23gj"]
 
-[ext_resource type="Script" uid="uid://k4onkm1puwy8" path="res://Script/Entity.gd" id="1_ss10u"]
+[ext_resource type="Script" path="res://Script/Entity.gd" id="1_ss10u"]
 [ext_resource type="Shader" uid="uid://du0ir30tpiusa" path="res://Scenes/projectiles/Fireball2.tres" id="2_gd1u2"]
 [ext_resource type="Shader" uid="uid://cn0wxtob2d3ex" path="res://Scenes/projectiles/fireball.tres" id="2_vrgte"]
 [ext_resource type="PackedScene" uid="uid://b0oi77jwlc0b8" path="res://Assets/Magic/Fireball.glb" id="3_r3110"]
@@ -39,8 +39,8 @@ fill_to = Vector2(0, 0)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8iiia"]
 render_priority = 0
 shader = ExtResource("5_rjril")
-shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_f754s")
 shader_parameter/Trail_speed = Vector2(-2, 0)
+shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_f754s")
 
 [sub_resource type="QuadMesh" id="QuadMesh_pjv4s"]
 
