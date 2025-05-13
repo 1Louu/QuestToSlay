@@ -13,21 +13,47 @@ class_name Entity
 @export var armor: float
 @export var Entityname:String  
 
+@export var ROTATION_SPEED = 5
+
+var direction: Vector3 = Vector3.ZERO 
+# Direction serve as a point to look at (mostly used for mobs),  
+var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+
 func _ready(): 
 	CurrentHP = MaxHP
 
-func takeDmg(damage: float ):
-	CurrentHP -= damage / armor 
-	if (CurrentHP < 0): 
-		dieprocess();
+func _physics_process(delta):
+	
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+	
+	apply_movement(delta)
+	
+	move_and_slide()
+	
+	update_animation()
 
-func gainHP(life: float):
-	CurrentHP += life
-	if(CurrentHP > MaxHP):
-		CurrentHP = MaxHP
 
-func getEntName(): 
-	return Entityname
+func rotate_model_to_direction(delta: float) -> void:
+	if direction != Vector3.ZERO:
+		var target_rotation = atan2(direction.x, direction.z)
+		var current_rotation = rotation.y
+		rotation.y = lerp_angle(current_rotation, target_rotation, ROTATION_SPEED * delta)
 
-func dieprocess(): 
-	free()
+func apply_movement(delta: float) -> void:
+	pass
+
+func update_animation() -> void:
+	pass
+	
+func take_damage(amount: float) -> void:
+	CurrentHP -= amount
+	if CurrentHP <= 0:
+		CurrentHP = 0
+		die()
+		
+func heal(amount: float) -> void:
+	CurrentHP = min(CurrentHP + amount, MaxHP)
+	
+func die() -> void:
+	pass 
