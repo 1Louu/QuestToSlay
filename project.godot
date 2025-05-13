@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Quest to Slay"
-run/main_scene="res://interfaces/mainmenu.tscn"
+run/main_scene="res://Scenes/interfaces/mainmenu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://c3tlbpbheqy6c"
 
 [autoload]
 
-Global="*res://Singleton/Global.gd"
+Global="*res://Script/Singleton/Global.gd"
 
 [input]
 

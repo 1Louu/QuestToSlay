@@ -1,17 +1,12 @@
-extends CharacterBody3D 
+extends Entity 
 class_name mob 
 
 
-@export var SPEED = 2.5
-@export var JUMP_VELOCITY = 4.5
 @export var player: Node3D 
-@export var ATTACK = 5
-@export var DEFENSE = 5
-@export var HP = 5
 
 func _ready() -> void:
 	$Area3D.connect("body_entered", _on_attack_range_body_entered)
-	pass 
+
 	
 
 func _on_attack_range_body_entered(body: Node) -> void:
@@ -27,7 +22,7 @@ func _physics_process(delta: float) -> void:
 
 	if player:
 		var direction = (player.global_transform.origin - global_transform.origin).normalized()
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * SPD
+		velocity.z = direction.z * SPD
 
 	move_and_slide()
