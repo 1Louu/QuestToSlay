@@ -13,15 +13,15 @@ collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_veuf2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="DefaultCollisionBox" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_j7b6x")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="DefaultModel" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_uo2ky")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="AttackArea3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="HurtBoxShape3D" type="CollisionShape3D" parent="AttackArea3D"]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, -0.257625, 0, 0)
 shape = SubResource("BoxShape3D_alqrc")

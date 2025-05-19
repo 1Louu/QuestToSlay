@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cyeksynfe0pxt"
-path.s3tc="res://.godot/imported/trail2.png-090762880fabeedb7fe8a61b344a3dbf.s3tc.ctex"
+uid="uid://djaqhukt7elr2"
+path.s3tc="res://.godot/imported/T_VFX_basic1.PNG-3e5ee391316e1783d0741dc9d4439d29.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Magic/trail2.png"
-dest_files=["res://.godot/imported/trail2.png-090762880fabeedb7fe8a61b344a3dbf.s3tc.ctex"]
+source_file="res://Assets/Magic/Fire/T_VFX_basic1.PNG"
+dest_files=["res://.godot/imported/T_VFX_basic1.PNG-3e5ee391316e1783d0741dc9d4439d29.s3tc.ctex"]
 
 [params]
 

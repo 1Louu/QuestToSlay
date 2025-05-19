@@ -24,9 +24,7 @@ func _ready():
 	CurrentHP = MaxHP
 
 func _physics_process(delta):
-	
-	if not is_on_floor():
-		velocity.y -= gravity * delta
+
 	
 	apply_movement(delta)
 	
@@ -40,9 +38,14 @@ func rotate_model_to_direction(delta: float) -> void:
 		var target_rotation = atan2(direction.x, direction.z)
 		var current_rotation = rotation.y
 		rotation.y = lerp_angle(current_rotation, target_rotation, ROTATION_SPEED * delta)
-
+		
 func apply_movement(delta: float) -> void:
-	pass
+	var global_direction = (transform.basis * Vector3(direction.x, 0, direction.z)).normalized()
+	velocity.x = lerp(velocity.x, global_direction.x * SPD, ACCELERATION * delta)
+	velocity.z = lerp(velocity.z, global_direction.z * SPD, ACCELERATION * delta)
+	
+	if not is_on_floor():
+		velocity.y -= gravity * delta
 
 func update_animation() -> void:
 	pass

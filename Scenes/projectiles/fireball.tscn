@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://lk54xxt6d3c6" path="res://Scenes/projectiles/fireball.gd" id="1_w0rff"]
 [ext_resource type="Shader" uid="uid://du0ir30tpiusa" path="res://Scenes/projectiles/Fireball2.tres" id="2_gd1u2"]
 [ext_resource type="Shader" uid="uid://cn0wxtob2d3ex" path="res://Scenes/projectiles/fireball.tres" id="2_vrgte"]
-[ext_resource type="PackedScene" uid="uid://b0oi77jwlc0b8" path="res://Assets/Magic/Fireball.glb" id="3_r3110"]
+[ext_resource type="PackedScene" uid="uid://b0oi77jwlc0b8" path="res://Assets/Magic/Fire/Fireball.glb" id="3_r3110"]
 [ext_resource type="Shader" uid="uid://e0wjmfw5lgfo" path="res://Scenes/projectiles/fire_trail.tres" id="5_rjril"]
-[ext_resource type="Texture2D" uid="uid://djaqhukt7elr2" path="res://Assets/Magic/T_VFX_basic1.PNG" id="6_5j3k1"]
+[ext_resource type="Texture2D" uid="uid://djaqhukt7elr2" path="res://Assets/Magic/Fire/T_VFX_basic1.PNG" id="6_5j3k1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wnmgr"]
 radius = 1.5

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b5hai7r12dvd0"
-path.s3tc="res://.godot/imported/T_VFX_Noi55.png-31a7c19429343d85351d85411c928663.s3tc.ctex"
+path.s3tc="res://.godot/imported/T_VFX_Noi55.png-57665be74a3917d8635e36bf4de0426c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Magic/T_VFX_Noi55.png"
-dest_files=["res://.godot/imported/T_VFX_Noi55.png-31a7c19429343d85351d85411c928663.s3tc.ctex"]
+source_file="res://Assets/Magic/Fire/T_VFX_Noi55.png"
+dest_files=["res://.godot/imported/T_VFX_Noi55.png-57665be74a3917d8635e36bf4de0426c.s3tc.ctex"]
 
 [params]
 
