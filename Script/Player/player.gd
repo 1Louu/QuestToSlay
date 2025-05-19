@@ -34,8 +34,6 @@ func _ready() -> void:
 #
 	#$Area3D.connect("body_entered", _on_attack_range_body_entered)
 	#$Area3D.connect("body_exited", _on_attack_range_body_exited)
-
-		
 	super._ready()
 	
 func _input(event):
@@ -64,45 +62,20 @@ func apply_movement(delta: float) -> void:
 	
 func get_input_direction() -> Vector3:
 	var input_dir = Vector3.ZERO
-	
-	var cam_basis = camera_3d.global_transform.basis
+
 	
 	if Input.is_action_pressed("move_forward"):
-		input_dir -= cam_basis.z
+		input_dir.z -= 1
 	if Input.is_action_pressed("move_backward"):
-		input_dir += cam_basis.z
+		input_dir.z += 1
 	if Input.is_action_pressed("move_left"):
-		input_dir += cam_basis.x
+		input_dir.x -= 1
 	if Input.is_action_pressed("move_right"):
-		input_dir -= cam_basis.x
+		input_dir.x += 1
 		
 	input_dir.y = 0
 	return input_dir.normalized()
 	
-	# Handle jump.
-	#if Input.is_action_just_pressed("jump") and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
-		#
-	## Get the input direction and handle the movement/deceleration.
-	## As good practice, you should replace UI actions with custom gameplay actions.
-	#var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	#var cam_basis = $Pivot.transform.basis
-	#
-	#var forward = -cam_basis.z.normalized()
-	#var right = cam_basis.x.normalized()
-	#forward.y = 0
-	#right.y = 0
-	#forward = forward.normalized()
-	#right = right.normalized()
-	#
-	#var direction = (-forward * input_dir.y + right * input_dir.x).normalized()
-	#if direction:
-		#velocity.x = direction.x * SPD
-		#velocity.z = direction.z * SPD
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPD)
-		#velocity.z = move_toward(velocity.z, 0, SPD)
-		#
 func handle_jump() -> void:
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
@@ -163,11 +136,3 @@ func die() -> void:
 	emit_signal("player_died")
 	
 	#await animation_player.animation_finished
-
-#func reset_player() -> void:
-	#CurrentHP = MaxHP
-	#is_alive = true
-	#input_enabled = true
-	#velocity = Vector3.ZERO
-	#
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

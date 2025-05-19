@@ -38,7 +38,6 @@ mouse_filter = 2
 [node name="Player" parent="." node_paths=PackedStringArray("UI") instance=ExtResource("5_ti1bm")]
 UI = NodePath("../UIPlayer")
 SPD = 10.0
-JUMP_VELOCITY = 5.0
 
 [node name="Mob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_7yo87")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3116, 0, 0)
