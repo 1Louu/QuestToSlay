@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=10 format=3 uid="uid://e0wjmfw5lgfo"]
 
-[ext_resource type="Texture2D" uid="uid://cyeksynfe0pxt" path="res://Assets/Magic/trail2.png" id="1_qg1pj"]
+[ext_resource type="Texture2D" uid="uid://cyeksynfe0pxt" path="res://Assets/Magic/Fire/trail2.png" id="1_qg1pj"]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_nybc7"]
 operator = 2

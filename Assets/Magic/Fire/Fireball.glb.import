@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b0oi77jwlc0b8"
-path="res://.godot/imported/Fireball.glb-4d0e0a3b069388b313dd552095be603b.scn"
+path="res://.godot/imported/Fireball.glb-1a0cc6a0868fe0432cf9ec7151bc16e2.scn"
 
 [deps]
 
-source_file="res://Assets/Magic/Fireball.glb"
-dest_files=["res://.godot/imported/Fireball.glb-4d0e0a3b069388b313dd552095be603b.scn"]
+source_file="res://Assets/Magic/Fire/Fireball.glb"
+dest_files=["res://.godot/imported/Fireball.glb-1a0cc6a0868fe0432cf9ec7151bc16e2.scn"]
 
 [params]
 
