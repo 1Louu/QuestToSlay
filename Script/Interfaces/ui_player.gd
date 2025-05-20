@@ -4,7 +4,7 @@ extends Control
 @onready var TargetHPBar= $"VBoxTarget/TargetHP"
 
 
-func targetfound(target: mob): 
+func targetfound(target: Mob): 
 	$"VBoxTarget".show()
 	Targetlabel.set_text(target.Entityname) 
 	TargetHPBar.set_max(target.MaxHP)

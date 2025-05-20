@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://co8q8fuxvs28"]
+
+[ext_resource type="PackedScene" uid="uid://bi5rwxq54owub" path="res://Scenes/Mobs/mob.tscn" id="1_22xmi"]
+[ext_resource type="PackedScene" uid="uid://d1rshn1skmktq" path="res://Assets/Entities/Slime.glb" id="2_jwskc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0ixv"]
+transparency = 1
+albedo_color = Color(0.168627, 1, 1, 0.568627)
+emission_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_176bl"]
+transparency = 1
+albedo_color = Color(5.39064e-06, 0.911556, 0.965227, 0.568627)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dfelf"]
+points = PackedVector3Array(-0.93675, 0.326675, -0.0284829, 0.976666, 0.0522777, 0.153561, 0.978017, -0.00911835, 0.153772, 0.184946, -0.00903195, -0.974193, 0.209867, 0.950647, -0.206222, -0.179873, -0.158732, 0.941724, 0.120992, 0.714317, 0.686378, -0.65965, -0.244832, -0.479945, -0.444194, 0.535543, -0.712815, 0.817038, -0.216679, -0.390739, -0.559819, 0.741672, 0.356462, 0.597111, 0.535493, -0.593488, 0.515096, -0.21654, 0.755919, -0.751802, -0.216094, 0.514184, 0.71508, 0.624359, 0.298413, -0.537638, 0.297148, 0.781269, 0.574947, 0.206208, 0.78554, -0.355182, 0.922893, -0.147416, -0.634167, -0.0067028, -0.755981, 0.091637, 0.685633, -0.715689, 0.15391, -0.2512, -0.788724, -0.944336, -0.131786, -0.212181, 0.0914374, 0.953215, 0.269729, 0.032438, 0.204866, 0.974349, 0.876204, 0.206255, -0.420438, -0.909003, 0.174634, 0.365947, 0.757356, -0.247497, 0.333693, -0.774854, 0.536233, -0.32711, 0.810935, 0.566461, -0.118068, -0.26969, -0.247061, 0.786629, 0.54722, -0.0671242, -0.816045, -0.211699, -0.131776, -0.945029)
+
+[node name="Slime" instance=ExtResource("1_22xmi")]
+Entityname = "Slime"
+
+[node name="DefaultCollisionBox" parent="." index="0"]
+visible = false
+
+[node name="DefaultModel" parent="." index="1"]
+visible = false
+
+[node name="Slime" parent="." index="3" instance=ExtResource("2_jwskc")]
+
+[node name="Skeleton3D" parent="Slime/Armature" index="0"]
+bones/0/scale = Vector3(1.03359, 1.03359, 1.03359)
+bones/1/scale = Vector3(0.93955, 0.93955, 0.93955)
+
+[node name="Sphere" parent="Slime/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_p0ixv")
+
+[node name="Sphere_001" parent="Slime/Armature/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_176bl")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0397631, 0)
+shape = SubResource("ConvexPolygonShape3D_dfelf")
+
+[editable path="Slime"]

@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://46cq3xv731ia" path="res://Scenes/interfaces/game_over.tscn" id="1_q2d71"]
 [ext_resource type="PackedScene" uid="uid://bonhpunonbj6b" path="res://Scenes/interfaces/Player/ui_player.tscn" id="2_uo7di"]
 [ext_resource type="PackedScene" uid="uid://bpa8swkhcj3b3" path="res://Scenes/interfaces/Player/pause_game.tscn" id="3_kn06e"]
+[ext_resource type="PackedScene" uid="uid://bi5rwxq54owub" path="res://Scenes/Mobs/mob.tscn" id="4_7yo87"]
 [ext_resource type="PackedScene" uid="uid://b05mykmtotgyl" path="res://Scenes/Player/Player.tscn" id="5_ti1bm"]
-[ext_resource type="PackedScene" uid="uid://co8q8fuxvs28" path="res://slime.tscn" id="6_n2onu"]
 [ext_resource type="PackedScene" uid="uid://nv2a5sa8xo6d" path="res://Assets/Environment/ground.tscn" id="6_op4cu"]
 [ext_resource type="PackedScene" uid="uid://de1d5hxok23gj" path="res://Scenes/projectiles/fireball.tscn" id="7_8l3nt"]
 [ext_resource type="PackedScene" uid="uid://dmv80qfy8u56n" path="res://Assets/Environment/tree.glb" id="8_kwl8l"]
@@ -37,14 +37,14 @@ mouse_filter = 2
 
 [node name="Player" parent="." node_paths=PackedStringArray("UI") instance=ExtResource("5_ti1bm")]
 UI = NodePath("../UIPlayer")
-Entityname = "Player"
 SPD = 10.0
-JUMP_VELOCITY = 5.0
 
-[node name="Slime" parent="." node_paths=PackedStringArray("player_ref") instance=ExtResource("6_n2onu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 0)
-player_ref = NodePath("../Player")
-SPD = 5.0
+[node name="Mob" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_7yo87")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3116, 0, 0)
+collision_mask = 7
+player = NodePath("../Player")
+SPD = 2.5
+Entityname = "Nobody"
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.7408, 0)
@@ -66,6 +66,7 @@ environment = SubResource("Environment_fu3iu")
 
 [node name="Fireball" parent="." instance=ExtResource("7_8l3nt")]
 transform = Transform3D(-1.31134e-08, -0.3, 0, 0.3, -1.31134e-08, 0, 0, 0, 0.3, -8.57962, -0.0844077, 1.88158)
+metadata/_custom_type_script = "uid://k4onkm1puwy8"
 
 [node name="tree" parent="." instance=ExtResource("8_kwl8l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.41419, -6.18515, -29.4312)
