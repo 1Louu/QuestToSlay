@@ -18,11 +18,10 @@ points = PackedVector3Array(-0.93675, 0.326675, -0.0284829, 0.976666, 0.0522777,
 [node name="Slime" instance=ExtResource("1_22xmi")]
 Entityname = "Slime"
 
-[node name="CollisionShape3D" parent="." index="0"]
+[node name="DefaultCollisionBox" parent="." index="0"]
 visible = false
-shape = null
 
-[node name="MeshInstance3D" parent="." index="1"]
+[node name="DefaultModel" parent="." index="1"]
 visible = false
 
 [node name="Slime" parent="." index="3" instance=ExtResource("2_jwskc")]

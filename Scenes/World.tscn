@@ -37,6 +37,7 @@ mouse_filter = 2
 
 [node name="Player" parent="." node_paths=PackedStringArray("UI") instance=ExtResource("5_ti1bm")]
 UI = NodePath("../UIPlayer")
+Entityname = "Player"
 SPD = 10.0
 JUMP_VELOCITY = 5.0
 

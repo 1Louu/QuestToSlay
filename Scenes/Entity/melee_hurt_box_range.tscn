@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8b4v4ylcxpyf"]
+
+[ext_resource type="Script" uid="uid://crv5vf8cr7iv4" path="res://Script/EntityMeleeAttack.gd" id="1_unmk5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_id4x5"]
+size = Vector3(1.59607, 2.1015, 1.28613)
+
+[node name="MeleeHurtBoxRange" type="Area3D" node_paths=PackedStringArray("TimerWind", "TimerActiveHurt", "Cooldown", "MeleeHurtBoxRange")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_unmk5")
+TimerWind = NodePath("TimerWindAttack")
+TimerActiveHurt = NodePath("TimerActiveHurtBox")
+Cooldown = NodePath("TimerCooldown")
+MeleeHurtBoxRange = NodePath(".")
+
+[node name="MeleeHurtBoxRange" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_id4x5")
+
+[node name="TimerWindAttack" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerActiveHurtBox" type="Timer" parent="."]
+one_shot = true
+
+[node name="TimerCooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="TimerWindAttack" to="." method="_on_timer_wind_attack_timeout"]
+[connection signal="timeout" from="TimerActiveHurtBox" to="." method="_on_timer_active_hurt_box_timeout"]

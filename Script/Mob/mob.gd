@@ -6,7 +6,7 @@ class_name Mob
 @export var player_ref: Player
 
 func _ready() -> void:
-	$Area3D.connect("body_entered", _on_attack_range_body_entered)
+	$AttackArea3D.connect("body_entered", _on_attack_range_body_entered)
 	
 func update_animation() -> void:
 	if not animation_mob:

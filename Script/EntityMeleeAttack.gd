@@ -1,4 +1,6 @@
 extends Area3D
+class_name IAMelee ## Interface Attack Melee
+# Refactorized scene as most melee attack will always be using the same script. 
 
 @export_group("Node Exports")
 ## Me, an entity able to melee attack.
@@ -24,19 +26,24 @@ func setTimer( T1: float, T2: float, T3: float):
 	TSActiveHurt = T2
 	TSCooldown = T3
 
-func startTimer():
-	if(TimerWind.is_stopped() or TimerActiveHurt.is_stopped() or Cooldown.is_stopped()):
+func TryAttack() -> bool:
+	if(TimerWind.is_stopped() and TimerActiveHurt.is_stopped() and Cooldown.is_stopped()):
 		TimerWind.start(TSWind)
-	
+		return true
+	return false
+
 func _on_timer_wind_attack_timeout() -> void:
 	for body in MeleeHurtBoxRange.get_overlapping_bodies():
 		if(body is Entity):
 			body.take_damage(Me.Strenght)
 	TimerActiveHurt.start(TSActiveHurt)
-	
+
 func _on_timer_active_hurt_box_timeout() -> void:
 	Cooldown.start(TSCooldown)
 
 func _on_body_entered(body: Entity) -> void:
 	if(!TimerActiveHurt.is_stopped()): # If the Hurtbox timer is active (will deal damage long as hurtbox timer is active)
 		body.take_damage(Me.Strenght)
+
+func _on_timer_cooldown_timeout() -> void:
+	print("Cooldown Done")
