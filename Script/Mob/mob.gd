@@ -2,11 +2,12 @@ extends Entity
 class_name Mob 
 
 @onready var animation_mob = $AnimationPlayer
-
+@export var ExpValue: float = 2
 @export var player_ref: Player
 
 func _ready() -> void:
 	$AttackArea3D.connect("body_entered", _on_attack_range_body_entered)
+	super._ready()
 	
 func update_animation() -> void:
 	if not animation_mob:
@@ -26,3 +27,7 @@ func set_direction(target: Entity):
 	var target_pos = target.global_position
 	var me_pos = global_position
 	direction = (target_pos - me_pos).normalized()
+
+func die():
+	player_ref.gainExp(ExpValue) 
+	super.die()

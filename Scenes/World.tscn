@@ -44,7 +44,6 @@ JUMP_VELOCITY = 5.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 0)
 player_ref = NodePath("../Player")
 Name = "Slime"
-MaxHP = 50.0
 SPD = 5.0
 
 [node name="Ground" type="StaticBody3D" parent="."]

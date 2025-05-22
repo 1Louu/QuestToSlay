@@ -6,20 +6,27 @@ var look_dir: Vector2
 @export_group("Node Exports")
 @export var Melee: Weapon
 @export var UI: Control
-@export_category("Player stats")
-@export var camera_sensitivity: float = 0.002
-var camera_rotation: Vector2 = Vector2.ZERO
-var input_enabled: bool = true
+@export var camera_pivot:Node3D
+@export var camera_3d: Camera3D
+@export var interaction_ray: RayCast3D
+@export var Target:RayCast3D
 
-@onready var camera_pivot = $Pivot
-@onready var camera_3d = $Pivot/Camera3D
-@onready var interaction_ray = $Pivot/Camera3D/InteractionRay
+@export_group("Camera Control")
+@export var camera_sensitivity: float = 0.002
+
+@export_category("Player stats")
+@export var Level: int =1 
+@export var ExperienceScaling: float =2
+var camera_rotation: Vector2 = Vector2.ZERO
+
+var input_enabled: bool = true
+var MaxExp: float = 10
+var CurrentExp: float = 0
 
 signal player_died
 
 var mouse_captured: bool = true
 
-@onready var Target= $Pivot/TargetMob
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -49,9 +56,7 @@ func _physics_process(delta):
 	super._physics_process(delta)
 	if Input.is_action_just_pressed("attack"):
 		Melee.startAttack()
-		
 
-	
 func get_input_direction() -> Vector3:
 	var input_dir = Vector3.ZERO
 	
@@ -92,9 +97,6 @@ func _on_target_mob_target(targbody: Mob) -> void:
 func _on_target_mob_off_target() -> void:
 	UI.OffTarget()
 
-func getStrenght() -> float:
-	return Strenght
-
 func die() -> void:
 	super.die()
 	#animation_player.play("death")
@@ -103,3 +105,14 @@ func die() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 	emit_signal("player_died")
+
+func gainExp(exp: float)-> void:
+	CurrentExp +=exp
+	if (CurrentExp >= MaxExp ): 
+		CurrentExp -= MaxExp
+		++Level
+		MaxExp =  MaxExp *Level * ExperienceScaling
+
+func LevelUp()-> void:
+	## UI level up need to go here and get the corresponding upgrade
+	pass

@@ -17,13 +17,10 @@ points = PackedVector3Array(-0.93675, 0.326675, -0.0284829, 0.976666, 0.0522777,
 
 [node name="Slime" instance=ExtResource("1_22xmi")]
 
-[node name="DefaultCollisionBox" parent="." index="0"]
+[node name="DefaultModel" parent="." index="0"]
 visible = false
 
-[node name="DefaultModel" parent="." index="1"]
-visible = false
-
-[node name="Slime" parent="." index="3" instance=ExtResource("2_jwskc")]
+[node name="Slime" parent="." index="2" instance=ExtResource("2_jwskc")]
 
 [node name="Skeleton3D" parent="Slime/Armature" index="0"]
 bones/0/scale = Vector3(1.03359, 1.03359, 1.03359)
@@ -35,7 +32,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_p0ixv")
 [node name="Sphere_001" parent="Slime/Armature/Skeleton3D" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_176bl")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="4"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0397631, 0)
 shape = SubResource("ConvexPolygonShape3D_dfelf")
 
