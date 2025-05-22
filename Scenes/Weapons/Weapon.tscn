@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://dmdoqassm25ta"]
+
+[ext_resource type="Script" uid="uid://deum83law65kj" path="res://Script/Weapon/weapon.gd" id="1_27vj6"]
+[ext_resource type="PackedScene" uid="uid://c8b4v4ylcxpyf" path="res://Scenes/Entity/IAttack.tscn" id="1_mvueu"]
+[ext_resource type="PackedScene" uid="uid://cqydcspdfki2d" path="res://Assets/weapon/sword.glb" id="3_8gj08"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_27vj6"]
+size = Vector3(0.1, 1, 0.1)
+
+[sub_resource type="Animation" id="Animation_27vj6"]
+resource_name = "Attack"
+length = 0.65
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1.8025),
+"update": 0,
+"values": [Vector3(-0.308814, 0.37672, 0.517099), Vector3(0.182029, 0.599708, 0.517099), Vector3(0.294, -0.381, -0.323), Vector3(-0.308814, 0.37672, 0.517099)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1.8025),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.3172, 1.01661, 0.190689), Vector3(2.05774, 2.26195, 0.190241), Vector3(0.495674, 1.53764, 0.190241), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hj41p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WeaponModel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.308814, 0.37672, 0.517099)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponModel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.3172, 1.01661, 0.190689)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8gj08"]
+_data = {
+&"Attack": SubResource("Animation_27vj6"),
+&"RESET": SubResource("Animation_hj41p")
+}
+
+[node name="Weapon" type="Node3D" node_paths=PackedStringArray("melee", "AniPlayer")]
+script = ExtResource("1_27vj6")
+TimeCooldown = 0.45
+melee = NodePath("MeleeHurtBoxRange")
+AniPlayer = NodePath("AnimationPlayer")
+
+[node name="MeleeHurtBoxRange" parent="." instance=ExtResource("1_mvueu")]
+collision_mask = 2
+
+[node name="WeaponModel" type="Node3D" parent="."]
+transform = Transform3D(0.466444, -0.36016, 0.807908, 0.18008, 0.932891, 0.311907, -0.866027, 9.38773e-07, 0.499998, -0.308814, 0.37672, 0.517099)
+
+[node name="Default" type="MeshInstance3D" parent="WeaponModel"]
+transform = Transform3D(1, 1.49012e-08, 0, 0, 1, 0, 0, 2.98023e-08, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_27vj6")
+
+[node name="sword" parent="WeaponModel" instance=ExtResource("3_8gj08")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8gj08")
+}

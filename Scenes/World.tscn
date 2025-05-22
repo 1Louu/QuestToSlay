@@ -37,7 +37,6 @@ mouse_filter = 2
 
 [node name="Player" parent="." node_paths=PackedStringArray("UI") instance=ExtResource("5_ti1bm")]
 UI = NodePath("../UIPlayer")
-Entityname = "Player"
 SPD = 10.0
 JUMP_VELOCITY = 5.0
 
@@ -52,7 +51,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Ground"]
-transform = Transform3D(2.9, 0, 0, 0, 2.9, 0, 0, 0, 2.9, 0, -15, 0)
+transform = Transform3D(2.9, 0, 0, 0, 2.9, 0, 0, 0, 2.9, -0.277809, -15, -0.0975761)
 shape = SubResource("ConcavePolygonShape3D_6b6wv")
 
 [node name="Ground" parent="Ground" instance=ExtResource("6_op4cu")]
