@@ -32,6 +32,9 @@ script = ExtResource("2_0s3jf")
 [node name="Weapon" parent="." instance=ExtResource("3_h54ih")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.83924)
 
+[node name="WeaponModel" parent="Weapon" index="1"]
+transform = Transform3D(0.466444, -0.36016, 0.807908, 0.18008, 0.932891, 0.311907, -0.866027, 9.38773e-07, 0.499998, -0.308814, 0.37672, 0.517099)
+
 [connection signal="offTarget" from="Pivot/TargetMob" to="." method="_on_target_mob_off_target"]
 [connection signal="target" from="Pivot/TargetMob" to="." method="_on_target_mob_target"]
 [connection signal="timeout" from="Pivot/TargetMob/OffTargetTimer" to="Pivot/TargetMob" method="_on_off_target_timer_timeout"]

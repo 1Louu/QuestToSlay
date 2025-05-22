@@ -49,4 +49,9 @@ func _on_timer_cooldown_timeout() -> void:
 	print("Cooldown Done")
 
 func updateRange(newRange: Vector3):
-	pass
+	scale.x += newRange.x
+	scale.y += newRange.y
+	scale.z += newRange.z
+	position.x -= newRange.x /2 
+	position.z -= newRange.z /2 
+	position.y -= newRange.y /2 

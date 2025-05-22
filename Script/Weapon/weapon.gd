@@ -23,3 +23,6 @@ func startAttack() -> void:
 func StrenghtUpdate(newStrnght:float) -> void:
 	player_strenght= newStrnght
 	melee.MeleeDamage = player_strenght * DMG_Multi
+	
+func updateRange(newRange: Vector3): 
+	melee.updateRange(newRange)
