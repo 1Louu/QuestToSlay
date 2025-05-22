@@ -1,14 +1,14 @@
-extends Entity 
+extends Entity
 class_name Player
 
 var look_dir: Vector2
 
 @export_group("Node Exports")
-@export var Melee: IAMelee
+@export var Melee: Weapon
 @export var UI: Control
 @export_category("Player stats")
 @export var camera_sensitivity: float = 0.002
-var camera_rotation: Vector2 = Vector2.ZERO 
+var camera_rotation: Vector2 = Vector2.ZERO
 var input_enabled: bool = true
 
 @onready var camera_pivot = $Pivot
@@ -48,7 +48,7 @@ func _physics_process(delta):
 	
 	super._physics_process(delta)
 	if Input.is_action_just_pressed("attack"):
-		Melee.TryAttack()
+		Melee.startAttack()
 		
 
 	
@@ -92,11 +92,11 @@ func _on_target_mob_target(targbody: Mob) -> void:
 func _on_target_mob_off_target() -> void:
 	UI.OffTarget()
 
-func getStrenght() -> float: 
+func getStrenght() -> float:
 	return Strenght
 
 func die() -> void:
-	super.die() 
+	super.die()
 	#animation_player.play("death")
 	input_enabled = false
 	

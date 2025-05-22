@@ -3,15 +3,15 @@ class_name IAMelee ## Interface Attack Melee
 # Refactorized scene as most melee attack will always be using the same script. 
 
 @export_group("Node Exports")
-## Me, an entity able to melee attack.
-@export var Me: Entity
+## variable to determine the number of damage. by default it is assigned as 1, however it should be changed through other entities
+@export var MeleeDamage: float = 1
 ## Timer to show an incoming attack
 @export var TimerWind: Timer
 ## Timer whose main purpose of activeHurt is to make the attack have a lasting hurt box,better for a more "fluid" attack
 @export var TimerActiveHurt: Timer
 ## Timer to determine whenever target entity may attack again
 @export var Cooldown: Timer
-@export var MeleeHurtBoxRange: Area3D
+@export var HurtBox: Area3D
 
 @export_group("Timer Setting")
 ## Winding Up attack time in seconds
@@ -33,9 +33,9 @@ func TryAttack() -> bool:
 	return false
 
 func _on_timer_wind_attack_timeout() -> void:
-	for body in MeleeHurtBoxRange.get_overlapping_bodies():
+	for body in HurtBox.get_overlapping_bodies():
 		if(body is Entity):
-			body.take_damage(Me.Strenght)
+			body.take_damage(MeleeDamage)
 	TimerActiveHurt.start(TSActiveHurt)
 
 func _on_timer_active_hurt_box_timeout() -> void:
@@ -43,7 +43,10 @@ func _on_timer_active_hurt_box_timeout() -> void:
 
 func _on_body_entered(body: Entity) -> void:
 	if(!TimerActiveHurt.is_stopped()): # If the Hurtbox timer is active (will deal damage long as hurtbox timer is active)
-		body.take_damage(Me.Strenght)
+		body.take_damage(MeleeDamage)
 
 func _on_timer_cooldown_timeout() -> void:
 	print("Cooldown Done")
+
+func updateRange(newRange: Vector3):
+	pass

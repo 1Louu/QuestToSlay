@@ -1,18 +1,18 @@
 extends CharacterBody3D
 class_name Entity
 
-@export var Entityname:String  = "Default"
+@export var Name:String  = "Default"
 @export_group("Entity Combat Stats")
 @export var MaxHP: float = 5
 var CurrentHP: float  
-@export var Strenght:  = 1
+@export var Strenght: float = 1
 @export var MaxMana: float = 1 
 @export var Mana: float =1 
 @export var armor: float=1
 
 @export_group("Entity Movement Stats")
-@export var SPD: float
-@export var JUMP_VELOCITY: float
+@export var SPD: float = 1
+@export var JUMP_VELOCITY: float =3
 @export var ACCELERATION = 5
 @export var ROTATION_SPEED = 5
 
@@ -57,4 +57,4 @@ func heal(amount: float) -> void:
 	CurrentHP = min(CurrentHP + amount, MaxHP)
 	
 func die() -> void:
-	pass 
+	queue_free()

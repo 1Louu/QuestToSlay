@@ -51,6 +51,7 @@ void fragment() {
 
 }
 "
+nodes/fragment/0/position = Vector2(440, -40)
 nodes/fragment/3/node = SubResource("VisualShaderNodeColorConstant_87ah4")
 nodes/fragment/3/position = Vector2(-380, 200)
 nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_ecxl1")

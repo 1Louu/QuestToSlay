@@ -1,62 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://b05mykmtotgyl"]
+[gd_scene load_steps=5 format=3 uid="uid://b05mykmtotgyl"]
 
 [ext_resource type="Script" uid="uid://db3dna0qysped" path="res://Script/Player/player.gd" id="1_rj2x4"]
 [ext_resource type="Script" uid="uid://de3x7ftve10td" path="res://Script/Player/target_mob.gd" id="2_0s3jf"]
-[ext_resource type="PackedScene" uid="uid://cqydcspdfki2d" path="res://Assets/weapon/sword.glb" id="3_rj2x4"]
-[ext_resource type="PackedScene" uid="uid://c8b4v4ylcxpyf" path="res://Scenes/Entity/melee_hurt_box_range.tscn" id="4_ude3g"]
+[ext_resource type="PackedScene" uid="uid://dmdoqassm25ta" path="res://Scenes/Weapons/Weapon.tscn" id="3_h54ih"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ftegl"]
-
-[sub_resource type="Animation" id="Animation_0s3jf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -1.41895, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_rj2x4"]
-resource_name = "attack"
-length = 0.7
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("..")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array()
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.6),
-"transitions": PackedFloat32Array(1, 3.86374, 1, 1),
-"update": 0,
-"values": [Vector3(0, -1.41895, 0), Vector3(-0.23757, 0.0138454, -0.0346745), Vector3(-0.137881, 6.28319, 1.14494), Vector3(0, 1.41895, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_43y4t"]
-_data = {
-&"RESET": SubResource("Animation_0s3jf"),
-&"attack": SubResource("Animation_rj2x4")
-}
-
-[sub_resource type="AnimationRootNode" id="AnimationRootNode_wu0n7"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Melee")]
 collision_mask = 15
 script = ExtResource("1_rj2x4")
-Melee = NodePath("MeleeHurtBoxRange")
+Melee = NodePath("Weapon")
 
 [node name="collisionPLayer" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ftegl")
@@ -76,35 +29,11 @@ script = ExtResource("2_0s3jf")
 
 [node name="OffTargetTimer" type="Timer" parent="Pivot/TargetMob"]
 
-[node name="Node3D" type="Node3D" parent="Pivot"]
-transform = Transform3D(0.151264, 0, -0.988494, 0, 1, 0, 0.988494, 0, 0.151264, 0.491953, 0, -0.459599)
-
-[node name="sword" parent="Pivot/Node3D" instance=ExtResource("3_rj2x4")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0.55, 0)
-
-[node name="MeleeHurtBoxRange" parent="." node_paths=PackedStringArray("Me") instance=ExtResource("4_ude3g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.12887)
-collision_mask = 2
-Me = NodePath("..")
-TSCooldown = 1.5
-
-[node name="MeleeHurtBoxRange" parent="MeleeHurtBoxRange" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0508728, 0.433149)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Pivot/Node3D/sword")
-libraries = {
-&"": SubResource("AnimationLibrary_43y4t")
-}
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-root_node = NodePath("../Pivot/Node3D/sword")
-tree_root = SubResource("AnimationRootNode_wu0n7")
-anim_player = NodePath("../AnimationPlayer")
+[node name="Weapon" parent="." instance=ExtResource("3_h54ih")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.83924)
 
 [connection signal="offTarget" from="Pivot/TargetMob" to="." method="_on_target_mob_off_target"]
 [connection signal="target" from="Pivot/TargetMob" to="." method="_on_target_mob_target"]
 [connection signal="timeout" from="Pivot/TargetMob/OffTargetTimer" to="Pivot/TargetMob" method="_on_off_target_timer_timeout"]
-[connection signal="timeout" from="MeleeHurtBoxRange/TimerCooldown" to="MeleeHurtBoxRange" method="_on_timer_cooldown_timeout"]
 
-[editable path="MeleeHurtBoxRange"]
+[editable path="Weapon"]
