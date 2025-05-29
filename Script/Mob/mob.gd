@@ -1,28 +1,23 @@
 extends Entity
 class_name Mob 
 
-@onready var animation_mob = $AnimationPlayer
 @export var ExpValue: float = 2
+@export_group("Nodes export")
 @export var player_ref: Player
+@export var melee_ref: IAMelee
 
 func _ready() -> void:
-	$AttackArea3D.connect("body_entered", _on_attack_range_body_entered)
 	super._ready()
-	
-func update_animation() -> void:
-	if not animation_mob:
-		return
-
-func _on_attack_range_body_entered(body: Node) -> void:
-	if body == player_ref:
-		print("Player hit!")
 
 func _physics_process(delta: float) -> void:
 	if(player_ref):
 		set_direction(player_ref)
-	apply_movement(delta)
-	move_and_slide()
-	
+	if(melee_ref.isNotAttacking()):
+		apply_movement(delta)
+		move_and_slide()
+	if(melee_ref.has_overlapping_bodies()&& melee_ref.isNotAttacking()):
+		MobAttack()
+
 func set_direction(target: Entity): 
 	var target_pos = target.global_position
 	var me_pos = global_position
@@ -31,3 +26,8 @@ func set_direction(target: Entity):
 func die():
 	player_ref.gainExp(ExpValue) 
 	super.die()
+	
+## Reason why this function is a separate one is so that for each mob, i can override and reuse for animations and mob specifics purpose
+func MobAttack(): 
+	if(melee_ref.TryAttack()):
+		print("I attacked")

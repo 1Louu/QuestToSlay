@@ -98,13 +98,12 @@ func _on_target_mob_off_target() -> void:
 	UI.OffTarget()
 
 func die() -> void:
-	super.die()
-	#animation_player.play("death")
-	input_enabled = false
-	
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
-	emit_signal("player_died")
+	print("You would have died but I didnt let you")
+	#super.die()
+	##animation_player.play("death")
+	#input_enabled = false
+	#release_mouse()
+	#emit_signal("player_died")
 
 func gainExp(exp: float)-> void:
 	CurrentExp +=exp
