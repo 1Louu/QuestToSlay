@@ -38,11 +38,14 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-575.273, -59.9778)
 modes/cull = 2
 flags/unshaded = true
 flags/shadows_disabled = true
 flags/ambient_light_disabled = true
 flags/fog_disabled = true
+preview_params/BallColor = "Color(0.888974, 0.404533, 0.446903, 1)"
+preview_params/FireballPower = "1.0"
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_1ghd0")
 nodes/fragment/2/position = Vector2(-60, 80)
 nodes/fragment/3/node = SubResource("VisualShaderNodeFresnel_xt7up")

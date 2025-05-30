@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=13 format=3 uid="uid://cn0wxtob2d3ex"]
+[gd_resource type="VisualShader" load_steps=13 format=3 uid="uid://cpykmlfctcw36"]
 
 [ext_resource type="Texture2D" uid="uid://b5hai7r12dvd0" path="res://Assets/Magic/Fire/T_VFX_Noi55.png" id="1_ubsug"]
 
@@ -101,10 +101,13 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-475.348, 433.289)
 modes/cull = 2
 flags/unshaded = true
 flags/shadows_disabled = true
 flags/ambient_light_disabled = true
+preview_params/Fire_Color = "Color(0.549515, 0.301853, 0.0963286, 1)"
+preview_params/Speed = "Vector2(1, 1)"
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_gnpid")
 nodes/fragment/2/position = Vector2(-140, 80)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_pme15")

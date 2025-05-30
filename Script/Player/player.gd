@@ -10,6 +10,9 @@ var look_dir: Vector2
 @export var camera_3d: Camera3D
 @export var interaction_ray: RayCast3D
 @export var Target:RayCast3D
+@export var MagicCdtimer: Timer
+
+const fireballPath= preload("res://Scenes/projectiles/fireball.tscn")
 
 @export_group("Camera Control")
 @export var camera_sensitivity: float = 0.002
@@ -56,6 +59,16 @@ func _physics_process(delta):
 	super._physics_process(delta)
 	if Input.is_action_just_pressed("attack"):
 		Melee.startAttack()
+	if Input.is_action_just_pressed("magic_attack"):
+		if(Mana >= 1 && MagicCdtimer.is_stopped()):
+			var instancefireball = fireballPath.instantiate()
+			get_parent().add_child(instancefireball)
+			instancefireball.position = global_position
+			instancefireball.rotation = rotation
+			instancefireball.rotation.x += camera_pivot.rotation.x + 180
+			Mana -1
+			MagicCdtimer.start()
+			
 
 func get_input_direction() -> Vector3:
 	var input_dir = Vector3.ZERO

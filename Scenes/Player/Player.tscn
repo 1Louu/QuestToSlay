@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ftegl"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Melee", "camera_pivot", "camera_3d", "interaction_ray", "Target")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Melee", "camera_pivot", "camera_3d", "interaction_ray", "Target", "MagicCdtimer")]
 collision_mask = 15
 script = ExtResource("1_rj2x4")
 Melee = NodePath("Weapon")
@@ -14,6 +14,7 @@ camera_pivot = NodePath("Pivot")
 camera_3d = NodePath("Pivot/Camera3D")
 interaction_ray = NodePath("Pivot/Camera3D/InteractionRay")
 Target = NodePath("Pivot/TargetMob")
+MagicCdtimer = NodePath("MagicCooldown")
 
 [node name="collisionPLayer" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ftegl")
@@ -32,9 +33,14 @@ collision_mask = 2
 script = ExtResource("2_0s3jf")
 
 [node name="OffTargetTimer" type="Timer" parent="Pivot/TargetMob"]
+one_shot = true
 
 [node name="Weapon" parent="." instance=ExtResource("3_h54ih")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.83924)
+
+[node name="MagicCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="offTarget" from="Pivot/TargetMob" to="." method="_on_target_mob_off_target"]
 [connection signal="target" from="Pivot/TargetMob" to="." method="_on_target_mob_target"]
