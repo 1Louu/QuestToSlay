@@ -48,7 +48,7 @@ func update_animation() -> void:
 	
 func take_damage(amount: float) -> void:
 	CurrentHP -= amount
-	print("damage taken ! Hit : %d", amount)
+	print("damage taken ! Hit : ", amount,"; Name of entity :", Name )
 	if CurrentHP <= 0:
 		CurrentHP = 0
 		die()

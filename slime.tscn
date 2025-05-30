@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://co8q8fuxvs28"]
+[gd_scene load_steps=18 format=3 uid="uid://co8q8fuxvs28"]
 
 [ext_resource type="PackedScene" uid="uid://bi5rwxq54owub" path="res://Scenes/Mobs/mob.tscn" id="1_22xmi"]
 [ext_resource type="Script" uid="uid://dtqnxkk5a3wlj" path="res://Script/Mob/slime.gd" id="2_4l1t8"]
@@ -30,31 +30,41 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bratd"]
 advance_mode = 2
-advance_condition = &"melee_ref.isAttacking()"
+advance_expression = "isAttacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5b0gg"]
+switch_mode = 2
 advance_mode = 2
-advance_condition = &"!melee_ref.isAttacking()"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_da4t2"]
+advance_mode = 2
+advance_expression = "isAttacked"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4l1t8"]
+advance_mode = 2
+advance_expression = "isAttacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ppcr1"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jrxk1"]
 states/Attack/node = SubResource("AnimationNodeAnimation_4l1t8")
 states/Attack/position = Vector2(446, 191)
 states/Attacked/node = SubResource("AnimationNodeAnimation_ppcr1")
-states/Attacked/position = Vector2(630, 174)
+states/Attacked/position = Vector2(626, 114)
 states/Idle/node = SubResource("AnimationNodeAnimation_jayke")
 states/Idle/position = Vector2(438, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2002g"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_bratd"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_5b0gg"), "Idle", "Attacked", SubResource("AnimationNodeStateMachineTransition_da4t2")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2002g"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_bratd"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_5b0gg"), "Idle", "Attacked", SubResource("AnimationNodeStateMachineTransition_da4t2"), "Attacked", "Attack", SubResource("AnimationNodeStateMachineTransition_4l1t8"), "Attacked", "Idle", SubResource("AnimationNodeStateMachineTransition_ppcr1")]
 graph_offset = Vector2(7, 58)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_4l1t8"]
 top_radius = 0.185
 bottom_radius = 0.0
 
-[node name="Slime" instance=ExtResource("1_22xmi")]
+[node name="Slime" node_paths=PackedStringArray("AnimTree") instance=ExtResource("1_22xmi")]
 script = ExtResource("2_4l1t8")
+AnimTree = NodePath("AnimationTree")
 
 [node name="CollisionShapeSlime" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0397631, 0)
@@ -67,6 +77,7 @@ visible = false
 
 [node name="Skeleton3D" parent="Slime/Armature" index="0"]
 bones/0/scale = Vector3(1.03359, 1.03359, 1.03359)
+bones/1/scale = Vector3(0.922679, 0.922679, 0.922679)
 
 [node name="Sphere" parent="Slime/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_p0ixv")
@@ -80,12 +91,13 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.21752, 0.392949, 0)
 [node name="AnimationTree" type="AnimationTree" parent="." index="4"]
 root_node = NodePath("../Slime")
 tree_root = SubResource("AnimationNodeStateMachine_jrxk1")
+advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../Slime/AnimationPlayer")
-parameters/conditions/!melee_ref.isAttacking() = false
-parameters/conditions/melee_ref.isAttacking() = false
 
 [node name="Look Indicator-Mesh" type="MeshInstance3D" parent="." index="5"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1.33898, 0, 0)
 mesh = SubResource("CylinderMesh_4l1t8")
+
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 
 [editable path="Slime"]
