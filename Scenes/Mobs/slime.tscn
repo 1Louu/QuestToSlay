@@ -16,6 +16,10 @@ emission_enabled = true
 transparency = 1
 albedo_color = Color(5.39064e-06, 0.911556, 0.965227, 0.568627)
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_4l1t8"]
+top_radius = 0.185
+bottom_radius = 0.0
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4l1t8"]
 animation = &"Attack"
 
@@ -58,13 +62,10 @@ states/Idle/position = Vector2(438, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2002g"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_bratd"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_5b0gg"), "Idle", "Attacked", SubResource("AnimationNodeStateMachineTransition_da4t2"), "Attacked", "Attack", SubResource("AnimationNodeStateMachineTransition_4l1t8"), "Attacked", "Idle", SubResource("AnimationNodeStateMachineTransition_ppcr1")]
 graph_offset = Vector2(7, 58)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_4l1t8"]
-top_radius = 0.185
-bottom_radius = 0.0
-
 [node name="Slime" node_paths=PackedStringArray("AnimTree") instance=ExtResource("1_22xmi")]
 script = ExtResource("2_4l1t8")
 AnimTree = NodePath("AnimationTree")
+Name = "Slime"
 
 [node name="CollisionShapeSlime" type="CollisionShape3D" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0397631, 0)
@@ -77,7 +78,7 @@ visible = false
 
 [node name="Skeleton3D" parent="Slime/Armature" index="0"]
 bones/0/scale = Vector3(1.03359, 1.03359, 1.03359)
-bones/1/scale = Vector3(0.922679, 0.922679, 0.922679)
+bones/1/scale = Vector3(0.987522, 0.987522, 0.987522)
 
 [node name="Sphere" parent="Slime/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_p0ixv")
@@ -85,18 +86,19 @@ surface_material_override/0 = SubResource("StandardMaterial3D_p0ixv")
 [node name="Sphere_001" parent="Slime/Armature/Skeleton3D" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_176bl")
 
-[node name="MeleeHurtBoxRange" parent="." index="3"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.21752, 0.392949, 0)
+[node name="MeleeHurtBoxRange" parent="Pivot" index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 1)
+
+[node name="Look Indicator-Mesh" type="MeshInstance3D" parent="Pivot" index="1"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0, 0, 1)
+mesh = SubResource("CylinderMesh_4l1t8")
+skeleton = NodePath("../..")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="4"]
 root_node = NodePath("../Slime")
 tree_root = SubResource("AnimationNodeStateMachine_jrxk1")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../Slime/AnimationPlayer")
-
-[node name="Look Indicator-Mesh" type="MeshInstance3D" parent="." index="5"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 1.33898, 0, 0)
-mesh = SubResource("CylinderMesh_4l1t8")
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 

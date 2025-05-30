@@ -5,14 +5,18 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_uo2ky"]
 
-[node name="Mob" type="CharacterBody3D" node_paths=PackedStringArray("melee_ref")]
+[node name="Mob" type="CharacterBody3D" node_paths=PackedStringArray("melee_ref", "pivot_ref")]
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_veuf2")
-melee_ref = NodePath("MeleeHurtBoxRange")
+melee_ref = NodePath("Pivot/MeleeHurtBoxRange")
+pivot_ref = NodePath("Pivot")
 
 [node name="DefaultModel" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_uo2ky")
 
-[node name="MeleeHurtBoxRange" parent="." instance=ExtResource("2_oe7hw")]
+[node name="Pivot" type="Node3D" parent="."]
+
+[node name="MeleeHurtBoxRange" parent="Pivot" instance=ExtResource("2_oe7hw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 collision_mask = 1

@@ -29,12 +29,7 @@ func _physics_process(delta):
 	update_animation()
 
 
-func rotate_model_to_direction(delta: float) -> void:
-	if direction != Vector3.ZERO:
-		var target_rotation = atan2(direction.x, direction.z)
-		var current_rotation = rotation.y
-		rotation.y = lerp_angle(current_rotation, target_rotation, ROTATION_SPEED * delta)
-		
+
 func apply_movement(delta: float) -> void:
 	var global_direction = (transform.basis * Vector3(direction.x, 0, direction.z)).normalized()
 	velocity.x = lerp(velocity.x, global_direction.x * SPD, ACCELERATION * delta)
