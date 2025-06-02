@@ -65,10 +65,9 @@ func _physics_process(delta):
 			get_parent().add_child(instancefireball)
 			instancefireball.position = global_position
 			instancefireball.rotation = rotation
-			instancefireball.rotation.x += camera_pivot.rotation.x + 180
+			instancefireball.rotation.x += camera_pivot.rotation.x + deg_to_rad(180)
 			Mana -1
 			MagicCdtimer.start()
-			
 
 func get_input_direction() -> Vector3:
 	var input_dir = Vector3.ZERO

@@ -14,8 +14,7 @@ func _physics_process(delta: float) -> void:
 func apply_movement(delta: float) -> void:
 	if target: 
 		look_at(target.global_position)
-	var global_direction = (transform.basis * Vector3(direction.x, 0, direction.z)).normalized()
-	velocity.z = lerp(velocity.z, global_direction.z * SPD, ACCELERATION * delta)
+	translate(Vector3(0,0, lerp(velocity.z, SPD, ACCELERATION * delta)))
 
 func UpdateHomingRange(range: float) -> void:
 	homing_range= range
