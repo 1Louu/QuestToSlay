@@ -126,7 +126,7 @@ func castMagic()-> void:
 	instancefireball.position = global_position
 	instancefireball.rotation = rotation
 	instancefireball.rotation.x += camera_pivot.rotation.x + deg_to_rad(180)
-	Mana - instancefireball.magic_cost
+	Mana -= instancefireball.magic_cost
 	UI.updateBar(Mana, "Mana")
 	MagicCdtimer.start()
 
