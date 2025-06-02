@@ -28,8 +28,6 @@ func _physics_process(delta):
 	move_and_slide()
 	update_animation()
 
-
-
 func apply_movement(delta: float) -> void:
 	var global_direction = (transform.basis * Vector3(direction.x, 0, direction.z)).normalized()
 	velocity.x = lerp(velocity.x, global_direction.x * SPD, ACCELERATION * delta)

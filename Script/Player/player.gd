@@ -11,8 +11,7 @@ var look_dir: Vector2
 @export var interaction_ray: RayCast3D
 @export var Target:RayCast3D
 @export var MagicCdtimer: Timer
-
-const fireballPath= preload("res://Scenes/projectiles/fireball.tscn")
+@export var FireballScene: PackedScene
 
 @export_group("Camera Control")
 @export var camera_sensitivity: float = 0.002
@@ -30,7 +29,6 @@ signal player_died
 
 var mouse_captured: bool = true
 
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		look_dir = event.relative * 0.001
@@ -38,6 +36,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _ready() -> void:
 	capture_mouse()
 	super._ready()
+	UI.updateMaxBar(MaxHP, "Life")
+	UI.updateMaxBar(MaxMana, "Mana")
 
 func _input(event):
 	if not input_enabled:
@@ -61,13 +61,7 @@ func _physics_process(delta):
 		Melee.startAttack()
 	if Input.is_action_just_pressed("magic_attack"):
 		if(Mana >= 1 && MagicCdtimer.is_stopped()):
-			var instancefireball = fireballPath.instantiate()
-			get_parent().add_child(instancefireball)
-			instancefireball.position = global_position
-			instancefireball.rotation = rotation
-			instancefireball.rotation.x += camera_pivot.rotation.x + deg_to_rad(180)
-			Mana -1
-			MagicCdtimer.start()
+			castMagic()
 
 func get_input_direction() -> Vector3:
 	var input_dir = Vector3.ZERO
@@ -123,6 +117,26 @@ func gainExp(exp: float)-> void:
 		CurrentExp -= MaxExp
 		++Level
 		MaxExp =  MaxExp *Level * ExperienceScaling
+		UI.updateMaxBar(MaxExp, "Exp")
+	UI.updateBar(CurrentExp, "Exp")
+
+func castMagic()-> void:
+	var instancefireball = FireballScene.instantiate()
+	get_parent().add_child(instancefireball)
+	instancefireball.position = global_position
+	instancefireball.rotation = rotation
+	instancefireball.rotation.x += camera_pivot.rotation.x + deg_to_rad(180)
+	Mana - instancefireball.magic_cost
+	UI.updateBar(Mana, "Mana")
+	MagicCdtimer.start()
+
+func take_damage(amount: float) -> void:
+	CurrentHP -= amount
+	print("Player damagetaken ! : ", amount)
+	if CurrentHP <= 0:
+		CurrentHP = 0
+		die()
+	UI.updateBar(CurrentHP, "Life")
 
 func LevelUp()-> void:
 	## UI level up need to go here and get the corresponding upgrade

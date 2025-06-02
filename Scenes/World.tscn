@@ -36,6 +36,7 @@ mouse_filter = 2
 
 [node name="Player" parent="." node_paths=PackedStringArray("UI") instance=ExtResource("5_ti1bm")]
 UI = NodePath("../UIPlayer")
+MaxMana = 30.0
 Mana = 30.0
 SPD = 10.0
 JUMP_VELOCITY = 5.0

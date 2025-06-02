@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b05mykmtotgyl"]
+[gd_scene load_steps=6 format=3 uid="uid://b05mykmtotgyl"]
 
 [ext_resource type="Script" uid="uid://db3dna0qysped" path="res://Script/Player/player.gd" id="1_rj2x4"]
 [ext_resource type="Script" uid="uid://de3x7ftve10td" path="res://Script/Player/target_mob.gd" id="2_0s3jf"]
+[ext_resource type="PackedScene" uid="uid://de1d5hxok23gj" path="res://Scenes/projectiles/fireball.tscn" id="2_ude3g"]
 [ext_resource type="PackedScene" uid="uid://dmdoqassm25ta" path="res://Scenes/Weapons/Weapon.tscn" id="3_h54ih"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ftegl"]
@@ -15,6 +16,8 @@ camera_3d = NodePath("Pivot/Camera3D")
 interaction_ray = NodePath("Pivot/Camera3D/InteractionRay")
 Target = NodePath("Pivot/TargetMob")
 MagicCdtimer = NodePath("MagicCooldown")
+FireballScene = ExtResource("2_ude3g")
+Mana = 50.0
 
 [node name="collisionPLayer" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ftegl")
