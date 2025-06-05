@@ -78,7 +78,7 @@ color = Color(2, 1.3, 0.5, 1)
 size = Vector2(0.1, 0.5)
 
 [node name="Fireball" instance=ExtResource("1_hgod1")]
-transform = Transform3D(4.37114e-08, 1, -8.74228e-08, 1, -4.37114e-08, 0, -3.82137e-15, -8.74228e-08, -1, 0, 0, 0)
+transform = Transform3D(4.36978e-08, 0.999688, -0.0249732, 1, -4.37114e-08, 0, -1.09161e-09, -0.0249732, -0.999688, 0, 0, 0)
 script = ExtResource("2_l55o7")
 magic_cost = 10.0
 Name = "Fireball"
@@ -87,6 +87,7 @@ Strenght = 2.0
 MaxMana = 0.0
 Mana = 0.0
 armor = 0.0
+SPD = 6.0
 
 [node name="HurtArea3D" parent="." index="0"]
 collision_layer = 0
