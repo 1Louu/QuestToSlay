@@ -126,4 +126,10 @@ explosiveness = 0.4
 process_material = SubResource("ParticleProcessMaterial_q65kv")
 draw_pass_1 = SubResource("QuadMesh_gjocp")
 
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="3"]
+light_color = Color(1, 0.4, 0, 1)
+light_energy = 4.0
+light_volumetric_fog_energy = 3.0
+omni_range = 60.0
+
 [editable path="FireballVFX/Fireball"]
