@@ -37,6 +37,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_hj41p"]
 length = 0.001
+step = 0.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,7 +45,7 @@ tracks/0/path = NodePath("WeaponModel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.00571428),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(-0.308814, 0.37672, 0.517099)]
@@ -56,10 +57,10 @@ tracks/1/path = NodePath("WeaponModel:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.00571428),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.3172, 1.01661, 0.190689)]
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8gj08"]
@@ -78,7 +79,7 @@ AniPlayer = NodePath("AnimationPlayer")
 collision_mask = 2
 
 [node name="WeaponModel" type="Node3D" parent="."]
-transform = Transform3D(0.466444, -0.36016, 0.807908, 0.18008, 0.932891, 0.311907, -0.866027, 9.38773e-07, 0.499998, -0.308814, 0.37672, 0.517099)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.308814, 0.37672, 0.517099)
 
 [node name="Default" type="MeshInstance3D" parent="WeaponModel"]
 transform = Transform3D(1, 1.49012e-08, 0, 0, 1, 0, 0, 2.98023e-08, 1, 0, 0, 0)

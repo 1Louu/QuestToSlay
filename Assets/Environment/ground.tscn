@@ -26,6 +26,6 @@ surface_material_override/0 = SubResource("ShaderMaterial_c8d6y")
 transform = Transform3D(2.9, 0, 0, 0, 2.9, 0, 0, 0, 2.9, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_6b6wv")
 
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." index="2"]
+[node name="GrassMultiMeshInstance" type="MultiMeshInstance3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.86207, 0)
 multimesh = SubResource("MultiMesh_rbfxf")

@@ -78,7 +78,7 @@ visible = false
 
 [node name="Skeleton3D" parent="Slime/Armature" index="0"]
 bones/0/scale = Vector3(1.03359, 1.03359, 1.03359)
-bones/1/scale = Vector3(0.94492, 0.94492, 0.94492)
+bones/1/scale = Vector3(0.964172, 0.964172, 0.964172)
 
 [node name="Sphere" parent="Slime/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_p0ixv")
