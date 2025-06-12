@@ -30,114 +30,114 @@ signal player_died
 var mouse_captured: bool = true
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		look_dir = event.relative * 0.001
-		
+    if event is InputEventMouseMotion:
+        look_dir = event.relative * 0.001
+        
 func _ready() -> void:
-	capture_mouse()
-	super._ready()
-	UI.updateMaxBar(MaxHP, "Life")
-	UI.updateMaxBar(MaxMana, "Mana")
+    capture_mouse()
+    super._ready()
+    UI.updateMaxBar(MaxHP, "Life")
+    UI.updateMaxBar(MaxMana, "Mana")
 
 func _input(event):
-	if not input_enabled:
-		return
-		
-	if event is InputEventMouseMotion:
-		rotate_y(-event.relative.x * camera_sensitivity)
-		
-		camera_pivot.rotate_x(-event.relative.y * camera_sensitivity)
-		camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, -PI/2, PI/2)
+    if not input_enabled:
+        return
+        
+    if event is InputEventMouseMotion:
+        rotate_y(-event.relative.x * camera_sensitivity)
+        
+        camera_pivot.rotate_x(-event.relative.y * camera_sensitivity)
+        camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, -PI/2, PI/2)
 
 func _physics_process(delta):
-	if not input_enabled:
-		return
-		
-	direction = get_input_direction()
-	handle_jump()
-	
-	super._physics_process(delta)
-	if Input.is_action_just_pressed("attack"):
-		Melee.startAttack()
-	if Input.is_action_just_pressed("magic_attack"):
-		if(Mana >= 1 && MagicCdtimer.is_stopped()):
-			castMagic()
+    if not input_enabled:
+        return
+        
+    direction = get_input_direction()
+    handle_jump()
+    
+    super._physics_process(delta)
+    if Input.is_action_just_pressed("attack"):
+        Melee.startAttack()
+    if Input.is_action_just_pressed("magic_attack"):
+        if(Mana >= 1 && MagicCdtimer.is_stopped()):
+            castMagic()
 
 func get_input_direction() -> Vector3:
-	var input_dir = Vector3.ZERO
-	
-	if Input.is_action_pressed("move_forward"):
-		input_dir.z -= 1
-	if Input.is_action_pressed("move_backward"):
-		input_dir.z += 1
-	if Input.is_action_pressed("move_left"):
-		input_dir.x -= 1
-	if Input.is_action_pressed("move_right"):
-		input_dir.x += 1
-		
-	input_dir.y = 0
-	return input_dir.normalized()
-	
+    var input_dir = Vector3.ZERO
+    
+    if Input.is_action_pressed("move_forward"):
+        input_dir.z -= 1
+    if Input.is_action_pressed("move_backward"):
+        input_dir.z += 1
+    if Input.is_action_pressed("move_left"):
+        input_dir.x -= 1
+    if Input.is_action_pressed("move_right"):
+        input_dir.x += 1
+        
+    input_dir.y = 0
+    return input_dir.normalized()
+    
 func handle_jump() -> void:
-	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
-			velocity.y = JUMP_VELOCITY
-	
+    if Input.is_action_just_pressed("jump"):
+        if is_on_floor():
+            velocity.y = JUMP_VELOCITY
+    
 func capture_mouse() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	mouse_captured = true
+    Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+    mouse_captured = true
 
 func release_mouse() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	mouse_captured = false
+    Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+    mouse_captured = false
 
 func _on_pause_game_paused() -> void:
-	if(mouse_captured):
-		release_mouse()
-	else:
-		capture_mouse()
+    if(mouse_captured):
+        release_mouse()
+    else:
+        capture_mouse()
 
 func _on_target_mob_target(targbody: Mob) -> void:
-	UI.targetfound(targbody)
+    UI.targetfound(targbody)
 
 func _on_target_mob_off_target() -> void:
-	UI.OffTarget()
+    UI.OffTarget()
 
 func die() -> void:
-	print("You would have died but I didnt let you")
-	#super.die()
-	##animation_player.play("death")
-	#input_enabled = false
-	#release_mouse()
-	#emit_signal("player_died")
+    print("You would have died but I didnt let you")
+    #super.die()
+    ##animation_player.play("death")
+    #input_enabled = false
+    #release_mouse()
+    #emit_signal("player_died")
 
 func gainExp(exp: float)-> void:
-	CurrentExp +=exp
-	if (CurrentExp >= MaxExp ): 
-		CurrentExp -= MaxExp
-		++Level
-		MaxExp =  MaxExp *Level * ExperienceScaling
-		UI.updateMaxBar(MaxExp, "Exp")
-	UI.updateBar(CurrentExp, "Exp")
+    CurrentExp +=exp
+    if (CurrentExp >= MaxExp ): 
+        CurrentExp -= MaxExp
+        ++Level
+        MaxExp =  MaxExp *Level * ExperienceScaling
+        UI.updateMaxBar(MaxExp, "Exp")
+    UI.updateBar(CurrentExp, "Exp")
 
 func castMagic()-> void:
-	var instancefireball = FireballScene.instantiate()
-	get_parent().add_child(instancefireball)
-	instancefireball.position = global_position
-	instancefireball.rotation = rotation
-	instancefireball.rotation.x += camera_pivot.rotation.x + deg_to_rad(180)
-	Mana -= instancefireball.magic_cost
-	UI.updateBar(Mana, "Mana")
-	MagicCdtimer.start()
+    var instancefireball = FireballScene.instantiate()
+    get_parent().add_child(instancefireball)
+    instancefireball.position = global_position
+    instancefireball.rotation = rotation
+    instancefireball.rotation.x += camera_pivot.rotation.x + deg_to_rad(180)
+    Mana -= instancefireball.magic_cost
+    UI.updateBar(Mana, "Mana")
+    MagicCdtimer.start()
 
 func take_damage(amount: float) -> void:
-	CurrentHP -= amount
-	print("Player damagetaken ! : ", amount)
-	if CurrentHP <= 0:
-		CurrentHP = 0
-		die()
-	UI.updateBar(CurrentHP, "Life")
+    CurrentHP -= amount
+    print("Player damagetaken ! : ", amount)
+    if CurrentHP <= 0:
+        CurrentHP = 0
+        die()
+    UI.updateBar(CurrentHP, "Life")
 
 func LevelUp()-> void:
-	## UI level up need to go here and get the corresponding upgrade
-	pass
+    ## UI level up need to go here and get the corresponding upgrade
+    pass

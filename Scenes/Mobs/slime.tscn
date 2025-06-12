@@ -60,7 +60,7 @@ states/Attacked/position = Vector2(626, 114)
 states/Idle/node = SubResource("AnimationNodeAnimation_jayke")
 states/Idle/position = Vector2(438, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2002g"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_bratd"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_5b0gg"), "Idle", "Attacked", SubResource("AnimationNodeStateMachineTransition_da4t2"), "Attacked", "Attack", SubResource("AnimationNodeStateMachineTransition_4l1t8"), "Attacked", "Idle", SubResource("AnimationNodeStateMachineTransition_ppcr1")]
-graph_offset = Vector2(7, 58)
+graph_offset = Vector2(-176, -34)
 
 [node name="Slime" node_paths=PackedStringArray("AnimTree") instance=ExtResource("1_22xmi")]
 script = ExtResource("2_4l1t8")
@@ -78,7 +78,7 @@ visible = false
 
 [node name="Skeleton3D" parent="Slime/Armature" index="0"]
 bones/0/scale = Vector3(1.03359, 1.03359, 1.03359)
-bones/1/scale = Vector3(0.964172, 0.964172, 0.964172)
+bones/1/scale = Vector3(0.85642, 0.85642, 0.85642)
 
 [node name="Sphere" parent="Slime/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_p0ixv")

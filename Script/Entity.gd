@@ -21,33 +21,33 @@ var direction: Vector3 = Vector3.ZERO
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready(): 
-	CurrentHP = MaxHP
+    CurrentHP = MaxHP
 
 func _physics_process(delta):
-	apply_movement(delta)
-	move_and_slide()
-	update_animation()
+    apply_movement(delta)
+    move_and_slide()
+    update_animation()
 
 func apply_movement(delta: float) -> void:
-	var global_direction = (transform.basis * Vector3(direction.x, 0, direction.z)).normalized()
-	velocity.x = lerp(velocity.x, global_direction.x * SPD, ACCELERATION * delta)
-	velocity.z = lerp(velocity.z, global_direction.z * SPD, ACCELERATION * delta)
-	
-	if not is_on_floor():
-		velocity.y -= gravity * delta
+    var global_direction = (transform.basis * Vector3(direction.x, 0, direction.z)).normalized()
+    velocity.x = lerp(velocity.x, global_direction.x * SPD, ACCELERATION * delta)
+    velocity.z = lerp(velocity.z, global_direction.z * SPD, ACCELERATION * delta)
+    
+    if not is_on_floor():
+        velocity.y -= gravity * delta
 
 func update_animation() -> void:
-	pass
-	
+    pass
+    
 func take_damage(amount: float) -> void:
-	CurrentHP -= amount
-	print("damage taken ! Hit : ", amount,"; Name of entity :", Name )
-	if CurrentHP <= 0:
-		CurrentHP = 0
-		die()
-		
+    CurrentHP -= amount
+    print("damage taken ! Hit : ", amount,"; Name of entity :", Name )
+    if CurrentHP <= 0:
+        CurrentHP = 0
+        die()
+        
 func heal(amount: float) -> void:
-	CurrentHP = min(CurrentHP + amount, MaxHP)
-	
+    CurrentHP = min(CurrentHP + amount, MaxHP)
+    
 func die() -> void:
-	queue_free()
+    queue_free()

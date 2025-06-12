@@ -1,8 +1,8 @@
 shader_type spatial;
 render_mode cull_disabled;
 
-uniform vec3 color : source_color;
-uniform vec3 color2 : source_color;
+uniform vec3 color : source_color = vec3(43, 124, 79);
+uniform vec3 color2 : source_color = vec3(2, 86, 96);
 uniform sampler2D noise;
 uniform float noiseScale = 20.0;
 
