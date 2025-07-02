@@ -1,15 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://b05mykmtotgyl"]
+[gd_scene load_steps=7 format=3 uid="uid://b05mykmtotgyl"]
 
 [ext_resource type="Script" uid="uid://db3dna0qysped" path="res://Script/Player/player.gd" id="1_rj2x4"]
 [ext_resource type="Script" uid="uid://de3x7ftve10td" path="res://Script/Player/target_mob.gd" id="2_0s3jf"]
+[ext_resource type="PackedScene" uid="uid://de1d5hxok23gj" path="res://Scenes/projectiles/fireball.tscn" id="2_ude3g"]
 [ext_resource type="PackedScene" uid="uid://dmdoqassm25ta" path="res://Scenes/Weapons/Weapon.tscn" id="3_h54ih"]
+[ext_resource type="Script" uid="uid://dkmpxe8riru56" path="res://Script/Managers/magic.gd" id="5_jmcll"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ftegl"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Melee")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("Melee", "camera_pivot", "camera_3d", "interaction_ray", "Target", "magicManager")]
 collision_mask = 15
 script = ExtResource("1_rj2x4")
 Melee = NodePath("Weapon")
+camera_pivot = NodePath("Pivot")
+camera_3d = NodePath("Pivot/Camera3D")
+interaction_ray = NodePath("Pivot/Camera3D/InteractionRay")
+Target = NodePath("Pivot/TargetMob")
+magicManager = NodePath("magic")
+Mana = 50.0
 
 [node name="collisionPLayer" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ftegl")
@@ -28,12 +36,26 @@ collision_mask = 2
 script = ExtResource("2_0s3jf")
 
 [node name="OffTargetTimer" type="Timer" parent="Pivot/TargetMob"]
+one_shot = true
 
 [node name="Weapon" parent="." instance=ExtResource("3_h54ih")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -0.83924)
 
+[node name="PlayerLight" type="OmniLight3D" parent="."]
+light_energy = 2.0
+omni_range = 15.0
+
+[node name="magic" type="Node" parent="." node_paths=PackedStringArray("timerCdMagic", "playerRef")]
+script = ExtResource("5_jmcll")
+magicList = Array[PackedScene]([ExtResource("2_ude3g")])
+timerCdMagic = NodePath("MagicCooldown")
+playerRef = NodePath("..")
+metadata/_custom_type_script = "uid://dkmpxe8riru56"
+
+[node name="MagicCooldown" type="Timer" parent="magic"]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="offTarget" from="Pivot/TargetMob" to="." method="_on_target_mob_off_target"]
 [connection signal="target" from="Pivot/TargetMob" to="." method="_on_target_mob_target"]
 [connection signal="timeout" from="Pivot/TargetMob/OffTargetTimer" to="Pivot/TargetMob" method="_on_off_target_timer_timeout"]
-
-[editable path="Weapon"]

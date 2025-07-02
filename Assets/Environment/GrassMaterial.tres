@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://doupleppmh18v"]
+
+[ext_resource type="Shader" uid="uid://briipmp58xs17" path="res://Assets/Shaders/Props/Grass.gdshader" id="1_7g2l4"]
+
+[sub_resource type="Gradient" id="Gradient_knewv"]
+offsets = PackedFloat32Array(0.386792, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_knewv"]
+fractal_lacunarity = 3.785
+fractal_gain = -0.12
+fractal_weighted_strength = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qltcr"]
+color_ramp = SubResource("Gradient_knewv")
+noise = SubResource("FastNoiseLite_knewv")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7g2l4")
+shader_parameter/color = Color(0.177818, 0.753097, 0.362129, 1)
+shader_parameter/color2 = Color(0.0748824, 0.572489, 0.731521, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_qltcr")
+shader_parameter/noiseScale = 50.0

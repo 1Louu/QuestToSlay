@@ -34,7 +34,7 @@ height = 20
 color_ramp = SubResource("Gradient_hfsg1")
 noise = SubResource("FastNoiseLite_0x64n")
 
-[node name="UIPlayer" type="Control"]
+[node name="UIPlayer" type="Control" node_paths=PackedStringArray("LifeBar", "ManaBar", "ExperienceBar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,6 +45,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("1_5kjf4")
+LifeBar = NodePath("VBoxPlayerStats/LifeBar")
+ManaBar = NodePath("VBoxPlayerStats/ManaBar")
+ExperienceBar = NodePath("ExperienceBar")
 
 [node name="VBoxPlayerStats" type="VBoxContainer" parent="."]
 layout_mode = 1

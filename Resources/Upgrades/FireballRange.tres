@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerUpgrade" load_steps=2 format=3 uid="uid://cjvs85dyiw3qb"]
+
+[ext_resource type="Script" uid="uid://cxk3v3jfsliqc" path="res://Script/Upgrades/P-upgrade.gd" id="1_m5bqq"]
+
+[resource]
+script = ExtResource("1_m5bqq")
+upgradeName = "Fireball Range"
+uptype = 3
+metadata/_custom_type_script = "uid://cxk3v3jfsliqc"

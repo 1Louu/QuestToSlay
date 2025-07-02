@@ -32,6 +32,73 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"meshes": {
+"tree_Cylinder": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Assets/Environment/tree_Cylinder.res"
+},
+"tree_Plane": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Assets/Environment/tree_Plane.res"
+},
+"tree_Plane_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Assets/Environment/tree_Plane_001.res"
+},
+"tree_Plane_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Assets/Environment/tree_Plane_002.res"
+},
+"tree_Plane_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Assets/Environment/tree_Plane_003.res"
+},
+"tree_Plane_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Assets/Environment/tree_Plane_004.res"
+},
+"tree_Plane_005": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Assets/Environment/tree_Plane_005.res"
+},
+"tree_Plane_006": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://Assets/Environment/tree_Plane_006.res"
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6netfaomnsq5"]
+
+[ext_resource type="Script" uid="uid://dub05vssk6mc4" path="res://Script/Interfaces/upgrade_slot.gd" id="1_6nvrf"]
+[ext_resource type="Texture2D" uid="uid://b44mr0hb2d67l" path="res://Assets/Upgrades/Upgrade - Fire.png" id="2_fu7jw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6nvrf"]
+font_size = 12
+
+[node name="UpgradeSlot" type="Button" node_paths=PackedStringArray("UpgradeName", "UpgradeImage", "UpgradeDescrpt")]
+anchors_preset = -1
+anchor_top = 0.00339506
+anchor_right = 0.173611
+anchor_bottom = 0.466358
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_6nvrf")
+UpgradeName = NodePath("UpgradeSlotVBoxContainer/UpgradeNameLabel")
+UpgradeImage = NodePath("UpgradeSlotVBoxContainer/UpgradeTextureRect")
+UpgradeDescrpt = NodePath("UpgradeSlotVBoxContainer/UpgradeDescriptionLabel")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25098, 0.25098, 0.25098, 0.411765)
+
+[node name="UpgradeSlotVBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="UpgradeNameLabel" type="Label" parent="UpgradeSlotVBoxContainer"]
+layout_mode = 2
+text = "Upgrade Name"
+horizontal_alignment = 1
+
+[node name="UpgradeTextureRect" type="TextureRect" parent="UpgradeSlotVBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_fu7jw")
+
+[node name="UpgradeDescriptionLabel" type="Label" parent="UpgradeSlotVBoxContainer"]
+custom_minimum_size = Vector2(180, 100)
+layout_mode = 2
+text = "Upgrade Description Placeholder, Rest goes here "
+label_settings = SubResource("LabelSettings_6nvrf")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

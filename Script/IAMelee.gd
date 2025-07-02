@@ -27,10 +27,13 @@ func setTimer( T1: float, T2: float, T3: float):
 	TSCooldown = T3
 
 func TryAttack() -> bool:
-	if(TimerWind.is_stopped() and TimerActiveHurt.is_stopped() and Cooldown.is_stopped()):
+	if(isNotAttacking()):
 		TimerWind.start(TSWind)
 		return true
 	return false
+
+func isNotAttacking() ->bool: 
+	return TimerWind.is_stopped() and TimerActiveHurt.is_stopped() and Cooldown.is_stopped()
 
 func _on_timer_wind_attack_timeout() -> void:
 	for body in HurtBox.get_overlapping_bodies():
@@ -49,4 +52,9 @@ func _on_timer_cooldown_timeout() -> void:
 	print("Cooldown Done")
 
 func updateRange(newRange: Vector3):
-	pass
+	scale.x += newRange.x
+	scale.y += newRange.y
+	scale.z += newRange.z
+	position.x -= newRange.x /2 
+	position.z -= newRange.z /2 
+	position.y -= newRange.y /2 
