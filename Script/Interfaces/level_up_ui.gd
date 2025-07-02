@@ -8,7 +8,7 @@ func _ready():
     for Slot:LvlUpSlot in Slots:
         Slot.PlayerRef = PlayerRef
 
-func SetUpgrades(Upgrds: Array[PlayerUpgrade]):
+func SetUpgrades(Upgrds: Array[BaseUpgrade]):
     if(len(Upgrds) == len(Slots) or len(Upgrds) > len(Slots)):
         if (len(Upgrds) > len(Slots)): 
             print("Warning, too many upgrades are presented, lastest one(s) will be discarded")
@@ -17,3 +17,4 @@ func SetUpgrades(Upgrds: Array[PlayerUpgrade]):
             Slots[Slot-1].updateUpgrade()
     else: 
         print("Upgrades were too small to fit the upgrades list")
+        return

@@ -80,7 +80,8 @@ size = Vector2(0.1, 0.5)
 [node name="Fireball" instance=ExtResource("1_hgod1")]
 transform = Transform3D(4.36978e-08, 0.999688, -0.0249732, 1, -4.37114e-08, 0, -1.09161e-09, -0.0249732, -0.999688, 0, 0, 0)
 script = ExtResource("2_l55o7")
-magic_cost = 10.0
+explosion_scene = null
+explosion_range = 0.0
 Name = "Fireball"
 MaxHP = 1.0
 Strenght = 2.0

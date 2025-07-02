@@ -2,6 +2,7 @@ extends BaseUpgrade
 
 @export_category("FireballUpgrade")
 @export var fireballRange: float
+@export var fireballexplosion: float
 
 func upgradePlayer():
-    pass
+    player_ref.magic; 

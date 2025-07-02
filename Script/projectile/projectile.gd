@@ -2,7 +2,6 @@ extends Entity
 class_name projectile
 
 @export var homing_range: float = 0
-@export var magic_cost: float = 0
 
 var target: Entity
 var homing_direction 

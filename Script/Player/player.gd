@@ -10,8 +10,7 @@ var look_dir: Vector2
 @export var camera_3d: Camera3D
 @export var interaction_ray: RayCast3D
 @export var Target:RayCast3D
-@export var MagicCdtimer: Timer
-@export var FireballScene: PackedScene
+@export var magicManager: MagicManager
 
 @export_group("Camera Control")
 @export var camera_sensitivity: float = 0.002
@@ -60,8 +59,7 @@ func _physics_process(delta):
     if Input.is_action_just_pressed("attack"):
         Melee.startAttack()
     if Input.is_action_just_pressed("magic_attack"):
-        if(Mana >= 1 && MagicCdtimer.is_stopped()):
-            castMagic()
+        magicManager.castMagic()
 
 func get_input_direction() -> Vector3:
     var input_dir = Vector3.ZERO
@@ -119,16 +117,6 @@ func gainExp(exp: float)-> void:
         MaxExp =  MaxExp *Level * ExperienceScaling
         UI.updateMaxBar(MaxExp, "Exp")
     UI.updateBar(CurrentExp, "Exp")
-
-func castMagic()-> void:
-    var instancefireball = FireballScene.instantiate()
-    get_parent().add_child(instancefireball)
-    instancefireball.position = global_position
-    instancefireball.rotation = rotation
-    instancefireball.rotation.x += camera_pivot.rotation.x + deg_to_rad(180)
-    Mana -= instancefireball.magic_cost
-    UI.updateBar(Mana, "Mana")
-    MagicCdtimer.start()
 
 func take_damage(amount: float) -> void:
     CurrentHP -= amount

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://0j7txwmgnbkc"]
 
-[ext_resource type="PackedScene" uid="uid://b6netfaomnsq5" path="res://Scenes/interfaces/Upgrades/upgrade_slot.tscn" id="1_2p2be"]
-[ext_resource type="Script" uid="uid://dlpc2nwsx4q61" path="res://Script/Interfaces/level_up_ui.gd" id="1_nckqr"]
+[ext_resource type="Script" uid="uid://dlpc2nwsx4q61" path="res://Script/Interfaces/level_up_ui.gd" id="1_4y6uj"]
+[ext_resource type="PackedScene" uid="uid://b6netfaomnsq5" path="res://Scenes/interfaces/Upgrades/upgrade_slot.tscn" id="2_uydjv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_px1cd"]
 font_size = 12
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_nckqr")
+script = ExtResource("1_4y6uj")
 
 [node name="LevelUpUIBackground" type="ColorRect" parent="."]
 layout_mode = 1
@@ -73,11 +73,11 @@ grow_vertical = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="UpgradeSlot" parent="LevelUpHBoxContainer" instance=ExtResource("1_2p2be")]
+[node name="UpgradeSlot" parent="LevelUpHBoxContainer" instance=ExtResource("2_uydjv")]
 layout_mode = 2
 
-[node name="UpgradeSlot2" parent="LevelUpHBoxContainer" instance=ExtResource("1_2p2be")]
+[node name="UpgradeSlot2" parent="LevelUpHBoxContainer" instance=ExtResource("2_uydjv")]
 layout_mode = 2
 
-[node name="UpgradeSlot3" parent="LevelUpHBoxContainer" instance=ExtResource("1_2p2be")]
+[node name="UpgradeSlot3" parent="LevelUpHBoxContainer" instance=ExtResource("2_uydjv")]
 layout_mode = 2
