@@ -88,7 +88,7 @@ Strenght = 2.0
 MaxMana = 0.0
 Mana = 0.0
 armor = 0.0
-SPD = 6.0
+SPD = 12.0
 
 [node name="HurtArea3D" parent="." index="0"]
 collision_layer = 0

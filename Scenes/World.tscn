@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ca5ab6t6d1i8s"]
+[gd_scene load_steps=16 format=3 uid="uid://ca5ab6t6d1i8s"]
 
 [ext_resource type="PackedScene" uid="uid://46cq3xv731ia" path="res://Scenes/interfaces/game_over.tscn" id="1_q2d71"]
 [ext_resource type="PackedScene" uid="uid://bonhpunonbj6b" path="res://Scenes/interfaces/Player/ui_player.tscn" id="2_uo7di"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dri0fer8cw3gx" path="res://Scenes/Props/tree.tscn" id="6_y7y61"]
 [ext_resource type="PackedScene" uid="uid://co8q8fuxvs28" path="res://Scenes/Mobs/slime.tscn" id="8_q2d71"]
 [ext_resource type="Script" uid="uid://mf6fqp526cn0" path="res://Script/Managers/level_up_manager.gd" id="8_uo7di"]
+[ext_resource type="Script" uid="uid://byx18qrrufdk5" path="res://Script/Managers/mob_manager.gd" id="9_uo7di"]
+[ext_resource type="Script" uid="uid://fk8c8w3d6awj" path="res://Script/SpawnPoints.gd" id="10_kn06e"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_y7y61"]
 
@@ -59,10 +61,6 @@ MaxMana = 30.0
 Mana = 30.0
 SPD = 10.0
 JUMP_VELOCITY = 5.0
-
-[node name="Slime" parent="." node_paths=PackedStringArray("player_ref") instance=ExtResource("8_q2d71")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.6197)
-player_ref = NodePath("../Player")
 
 [node name="WorldSettings" type="Node" parent="."]
 
@@ -136,4 +134,66 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.23288, -6.12336, 9.42561)
 [node name="LevelUpManager" type="Node" parent="."]
 script = ExtResource("8_uo7di")
 
+[node name="MobManager" type="Node" parent="." node_paths=PackedStringArray("TimerRef", "PlayerRef")]
+script = ExtResource("9_uo7di")
+MobSceneList = Array[PackedScene]([ExtResource("8_q2d71")])
+TimerRef = NodePath("Timer")
+PlayerRef = NodePath("../Player")
+
+[node name="Spawns" type="Node" parent="MobManager"]
+
+[node name="Spawn1" type="Marker3D" parent="MobManager/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.38339, -3.97266, 64.4263)
+script = ExtResource("10_kn06e")
+
+[node name="Spawn2" type="Marker3D" parent="MobManager/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.857, -3.84983, 37.6124)
+script = ExtResource("10_kn06e")
+
+[node name="Spawn3" type="Marker3D" parent="MobManager/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.3288, -3.45892, 5.52513)
+script = ExtResource("10_kn06e")
+
+[node name="Spawn4" type="Marker3D" parent="MobManager/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.0831, -2.65449, -28.3422)
+script = ExtResource("10_kn06e")
+
+[node name="Spawn5" type="Marker3D" parent="MobManager/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.8052, -2.12981, -51.4942)
+script = ExtResource("10_kn06e")
+
+[node name="Spawn6" type="Marker3D" parent="MobManager/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1185, -2.12981, -61.5193)
+script = ExtResource("10_kn06e")
+
+[node name="Spawn7" type="Marker3D" parent="MobManager/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.26711, -2.12982, -64.2614)
+script = ExtResource("10_kn06e")
+
+[node name="Spawn8" type="Marker3D" parent="MobManager/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.5287, -2.41125, -58.656)
+script = ExtResource("10_kn06e")
+
+[node name="Spawn9" type="Marker3D" parent="MobManager/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.128, -2.41125, -39.1113)
+script = ExtResource("10_kn06e")
+
+[node name="Spawn10" type="Marker3D" parent="MobManager/Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.0012, -2.41125, -4.34249)
+script = ExtResource("10_kn06e")
+
+[node name="Timer" type="Timer" parent="MobManager"]
+autostart = true
+
 [connection signal="paused" from="PauseGame" to="Player" method="_on_pause_game_paused"]
+[connection signal="Spawn" from="MobManager/Spawns/Spawn1" to="MobManager" method="_on_spawn_spawn"]
+[connection signal="Spawn" from="MobManager/Spawns/Spawn2" to="MobManager" method="_on_spawn_spawn"]
+[connection signal="Spawn" from="MobManager/Spawns/Spawn3" to="MobManager" method="_on_spawn_spawn"]
+[connection signal="Spawn" from="MobManager/Spawns/Spawn4" to="MobManager" method="_on_spawn_spawn"]
+[connection signal="Spawn" from="MobManager/Spawns/Spawn5" to="MobManager" method="_on_spawn_spawn"]
+[connection signal="Spawn" from="MobManager/Spawns/Spawn6" to="MobManager" method="_on_spawn_spawn"]
+[connection signal="Spawn" from="MobManager/Spawns/Spawn7" to="MobManager" method="_on_spawn_spawn"]
+[connection signal="Spawn" from="MobManager/Spawns/Spawn8" to="MobManager" method="_on_spawn_spawn"]
+[connection signal="Spawn" from="MobManager/Spawns/Spawn9" to="MobManager" method="_on_spawn_spawn"]
+[connection signal="Spawn" from="MobManager/Spawns/Spawn10" to="MobManager" method="_on_spawn_spawn"]
+[connection signal="timeout" from="MobManager/Timer" to="MobManager" method="_on_timer_timeout"]
