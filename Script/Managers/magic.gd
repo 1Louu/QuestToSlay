@@ -12,12 +12,12 @@ class_name MagicManager
 var indexMagic: int = 0
 
 func castMagic()-> void:
-    if(playerRef.Mana >= magic_cost && timerCdMagic.is_stopped()):
-        var instanceMagic = magicList[indexMagic].instantiate()
-        get_parent().get_parent().add_child(instanceMagic)
-        instanceMagic.position = playerRef.global_position
-        instanceMagic.rotation = playerRef.rotation
-        instanceMagic.rotation.x += playerRef.camera_pivot.rotation.x + deg_to_rad(180)
-        playerRef.Mana -= magic_cost
-        playerRef.UI.updateBar(playerRef.Mana, "Mana")
-        timerCdMagic.start()
+	if(playerRef.Mana >= magic_cost && timerCdMagic.is_stopped()):
+		var instanceMagic = magicList[indexMagic].instantiate()
+		add_child(instanceMagic)
+		instanceMagic.global_position = playerRef.global_position
+		instanceMagic.rotation = playerRef.rotation
+		instanceMagic.rotation.x += playerRef.camera_pivot.rotation.x + deg_to_rad(180)
+		playerRef.Mana -= magic_cost
+		playerRef.UI.updateBar(playerRef.Mana, "Mana")
+		timerCdMagic.start()

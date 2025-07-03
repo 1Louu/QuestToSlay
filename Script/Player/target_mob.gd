@@ -5,7 +5,7 @@ signal offTarget
 var targbody: Mob
 @onready var timer = $OffTargetTimer
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_colliding(): 
 		targbody = get_collider()
 		if targbody is Mob:

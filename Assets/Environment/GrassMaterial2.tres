@@ -15,9 +15,10 @@ color_ramp = SubResource("Gradient_knewv")
 noise = SubResource("FastNoiseLite_knewv")
 
 [resource]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_7g2l4")
-shader_parameter/color = Color(0.177818, 0.753097, 0.362129, 1)
+shader_parameter/color = Color(0.176471, 0.752941, 0.360784, 1)
 shader_parameter/color2 = Color(0.0748824, 0.572489, 0.731521, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_qltcr")
 shader_parameter/noiseScale = 50.0

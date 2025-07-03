@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://de1d5hxok23gj"]
+[gd_scene load_steps=21 format=3 uid="uid://de1d5hxok23gj"]
 
 [ext_resource type="PackedScene" uid="uid://begmh8c4axywp" path="res://Scenes/projectiles/projectile.tscn" id="1_hgod1"]
 [ext_resource type="Shader" uid="uid://du0ir30tpiusa" path="res://Assets/Magic/Fire/Fireball2.tres" id="2_gd1u2"]
@@ -77,6 +77,8 @@ color = Color(2, 1.3, 0.5, 1)
 [sub_resource type="QuadMesh" id="QuadMesh_gjocp"]
 size = Vector2(0.1, 0.5)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_l55o7"]
+
 [node name="Fireball" instance=ExtResource("1_hgod1")]
 transform = Transform3D(4.36978e-08, 0.999688, -0.0249732, 1, -4.37114e-08, 0, -1.09161e-09, -0.0249732, -0.999688, 0, 0, 0)
 script = ExtResource("2_l55o7")
@@ -99,7 +101,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="FireballVFX" index="0"]
 mesh = SubResource("SphereMesh_w0rff")
-skeleton = NodePath("../../root/@EditorNode@21322/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Fireball")
 
 [node name="Fireball" parent="FireballVFX" index="1" instance=ExtResource("3_r3110")]
 
@@ -110,13 +111,11 @@ surface_material_override/0 = SubResource("ShaderMaterial_w0rff")
 transform = Transform3D(-2.62912e-07, 1.63, 0, -6.01472, -7.12496e-08, 0, 0, 0, 1, -0.0194497, -2.94166, -0.0130901)
 material_override = SubResource("ShaderMaterial_i8rcq")
 mesh = SubResource("QuadMesh_jn5as")
-skeleton = NodePath("../../root/@EditorNode@21322/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Fireball")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="FireballVFX" index="3"]
 transform = Transform3D(1.14922e-14, -7.12496e-08, 1, -6.01472, -7.12496e-08, 0, 2.62912e-07, -1.63, -4.37114e-08, -0.0194497, -2.94166, -0.0130901)
 material_override = SubResource("ShaderMaterial_i8rcq")
 mesh = SubResource("QuadMesh_jn5as")
-skeleton = NodePath("../../root/@EditorNode@21322/@Panel@14/@VBoxContainer@15/DockHSplitLeftL/DockHSplitLeftR/DockHSplitMain/@VBoxContainer@26/DockVSplitCenter/@VSplitContainer@54/@VBoxContainer@55/@EditorMainScreen@102/MainScreen/@CanvasItemEditor@11479/@VSplitContainer@11131/@HSplitContainer@11133/@HSplitContainer@11135/@Control@11136/@SubViewportContainer@11137/@SubViewport@11138/Fireball")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="FireballVFX" index="4"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.463767, 0)
@@ -132,5 +131,8 @@ light_color = Color(1, 0.4, 0, 1)
 light_energy = 4.0
 light_volumetric_fog_energy = 3.0
 omni_range = 60.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+shape = SubResource("SphereShape3D_l55o7")
 
 [editable path="FireballVFX/Fireball"]

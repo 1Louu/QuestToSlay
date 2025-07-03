@@ -33,6 +33,12 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
+"materials": {
+"Material": {
+"use_external/enabled": true,
+"use_external/path": "uid://crqp167g7fpyn"
+}
+},
 "meshes": {
 "Grass_Plane_015": {
 "generate/lightmap_uv": 0,
@@ -57,8 +63,8 @@ blender/meshes/export_geometry_nodes_instances=false
 blender/meshes/tangents=true
 blender/meshes/skins=2
 blender/meshes/export_bones_deforming_mesh_only=false
-blender/materials/unpack_enabled=false
-blender/materials/export_materials=0
+blender/materials/unpack_enabled=true
+blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true

@@ -78,7 +78,7 @@ visible = false
 
 [node name="Skeleton3D" parent="Slime/Armature" index="0"]
 bones/0/scale = Vector3(1.03359, 1.03359, 1.03359)
-bones/1/scale = Vector3(0.93156, 0.93156, 0.93156)
+bones/1/scale = Vector3(0.997939, 0.997939, 0.997939)
 
 [node name="Sphere" parent="Slime/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_p0ixv")
@@ -91,6 +91,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 1)
 
 [node name="Look Indicator-Mesh" type="MeshInstance3D" parent="Pivot" index="1"]
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 0, 0, 1)
+visible = false
 mesh = SubResource("CylinderMesh_4l1t8")
 skeleton = NodePath("../..")
 
